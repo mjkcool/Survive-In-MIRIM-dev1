@@ -1460,14 +1460,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Developer
-
-    s2019w01@e-mirim.hs.kr
-
-    s2019w05@e-mirim.hs.kr'
+  m_text: "\uAC1C\uBC1C\uC790\ns2019w01@e-mirim.hs.kr\ns2019w05@e-mirim.hs.kr"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ec411241612a60b49bbfaa4735211e6a, type: 2}
+  m_sharedMaterial: {fileID: 6332913705911609480, guid: ec411241612a60b49bbfaa4735211e6a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
