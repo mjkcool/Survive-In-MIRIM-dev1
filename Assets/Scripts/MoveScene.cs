@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class gamestart : MonoBehaviour
+public class MoveScene : MonoBehaviour
 {
+
+    public int nextScene;
     
     void Start()
     {
@@ -13,7 +15,7 @@ public class gamestart : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(nextScene);
     }
     
 }

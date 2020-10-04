@@ -17,6 +17,7 @@ public class DialogueSystem : MonoBehaviour
     public void Begin(Dialogue info)
     {
         anim.SetBool("isOpened", true);
+        names.Clear();
         sentences.Clear();
 
         foreach (var name in info.names)
@@ -29,12 +30,13 @@ public class DialogueSystem : MonoBehaviour
         }
 
         Next();
-
+        
     }
 
     public void Next()
     {
-        if(sentences.Count == 0) End();
+        Debug.Log("Next함수");
+        if (sentences.Count == 0) End();
 
         txtName.text = names.Dequeue();
         txtSentence.text = sentences.Dequeue();
