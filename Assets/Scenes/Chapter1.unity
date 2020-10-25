@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 671992869}
   - component: {fileID: 671992870}
   m_Layer: 5
-  m_Name: splashImage
+  m_Name: ChapterIndex
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -659,7 +659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &713540904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -728,7 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.8666667}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -825,8 +825,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 134.09, y: 561}
-  m_SizeDelta: {x: 761.313, y: 761.313}
+  m_AnchoredPosition: {x: 119.7, y: 612}
+  m_SizeDelta: {x: 858.0233, y: 858.0233}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &847800330
 RectTransform:

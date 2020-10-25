@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
@@ -24,18 +25,23 @@ public class DialogueManager : MonoBehaviour
     public Image dialoguePortrait;
     public float delay = 2f;
 
+    private bool isCurrentlyTyping;
+    private string completeText;
+    
     public Queue<DialogueBase.Info> dialogueInfo;
+
+    
+
 
     public void Start()
     {
-        //dialog 초기화
-        dialogueInfo = new Queue<DialogueBase.Info>();
+        dialogueInfo = new Queue<DialogueBase.Info>();  //다이얼로그 초기화
     }
 
 
     public void EnqueueDialogue(DialogueBase db)
     {
-        DialogueBox.SetActive(true);
+        DialogueBox.SetActive(true); //화면에 띄움
         dialogueInfo.Clear();
 
         foreach(DialogueBase.Info info in db.dialogueInfo)
@@ -54,28 +60,44 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        if(isCurrentlyTyping == true)
+        {
+            CompleteText();
+            StopAllCoroutines();
+            isCurrentlyTyping = false;
+            return;
+        }
+
         DialogueBase.Info info = dialogueInfo.Dequeue();
+        completeText = info.myText;
 
         dialogueName.text = info.myName;
         dialogueText.text = info.myText;
         dialoguePortrait.sprite = info.portrait;
 
+        dialogueText.text = "";
         StartCoroutine(TypeText(info));
     }
 
     IEnumerator TypeText(DialogueBase.Info info)
     {
-        dialogueText.text = "";
+        isCurrentlyTyping = true;
         foreach(char c in info.myText.ToCharArray())
         {
             yield return new WaitForSeconds(delay);
             dialogueText.text += c;
-            yield return null;
         }
+        isCurrentlyTyping = false;
+    }
+
+    private void CompleteText()
+    {
+        dialogueText.text = completeText;
     }
 
     public void EndofDialogue()
     {
-        DialogueBox.SetActive(false);
+        DialogueBox.SetActive(false); //화면에서 없앰
+
     }
 }
