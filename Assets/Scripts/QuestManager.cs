@@ -19,8 +19,6 @@ public class QuestManager : MonoBehaviour
             instance = this;
         }
 
-        Invoke("splashIndex", 1f);
-
     }
 
     public GameObject QuestDialogBox;

@@ -100,6 +100,6 @@ public class DialogueManager : MonoBehaviour
     public void EndofDialogue()
     {
         DialogueBox.SetActive(false); //화면에서 없앰
-        questStarter.splashIndex();
+        questStarter.start();
     }
 }
