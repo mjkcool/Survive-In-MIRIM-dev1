@@ -24,6 +24,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Image dialoguePortrait;
     public float delay = 2f;
+    public QuestStarter questStarter;
 
     private bool isCurrentlyTyping;
     private string completeText;
@@ -95,9 +96,10 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = completeText;
     }
 
+    
     public void EndofDialogue()
     {
         DialogueBox.SetActive(false); //화면에서 없앰
-
+        questStarter.splashIndex();
     }
 }

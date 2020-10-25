@@ -8,7 +8,7 @@ using TMPro;
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager instance;
-    private void Awake()
+    public void Awake()
     {
         if (instance != null)
         {
@@ -18,17 +18,28 @@ public class QuestManager : MonoBehaviour
         {
             instance = this;
         }
+
+        Invoke("splashIndex", 1f);
+
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject QuestDialogBox;
+    public TextMeshProUGUI dialogueName;
+    public TextMeshProUGUI dialogueText;
+    public Image QuestPortrait;
+    public float delay = 2f;
+
+    public Queue<QuestBase.Info> QuestInfo;
+
+    public void Start()
     {
-        
+        QuestInfo = new Queue<QuestBase.Info>();  //초기화
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EnqueueQuest(QuestBase db)
     {
-        
+        QuestDialogBox.SetActive(true);
+
     }
+
 }

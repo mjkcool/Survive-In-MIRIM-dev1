@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueInfo:
   - myName: "\uC720\uC800"
-    portrait: {fileID: 21300000, guid: b85833aafd2c4664b8d512631207efe9, type: 3}
+    portrait: {fileID: 21300000, guid: cce9cc06e88f2c04ba7f93e871725c99, type: 3}
     myText: "\uC624\uB298 \uC2DC\uD5D8 \uC798 \uBCFC \uC218 \uC788\uC744\uAE4C?"
   - myName: "\uC601\uC7AC"
     portrait: {fileID: 21300000, guid: 0eb3e30920e303540976c2182f56bdf1, type: 3}
-    myText: "\uC57C! \uB108 \uB418\uAC8C \uC77C\uCC0D \uC654\uB124. \uACF5\uBD80
+    myText: "\uC57C~ \uB108 \uB418\uAC8C \uC77C\uCC0D \uC654\uB124. \uACF5\uBD80
       \uB9CE\uC774 \uD588\uB0D0?"
   - myName: "\uC720\uC800"
     portrait: {fileID: 21300000, guid: 57130e8e5074ce041ab743fb152aad4b, type: 3}

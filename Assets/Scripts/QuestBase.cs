@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogues")]
-public class DialogueBase : ScriptableObject
+[CreateAssetMenu(fileName = "New Quest", menuName = "Quest")]
+public class QuestBase : ScriptableObject
 {
     [System.Serializable]
     public class Info
@@ -14,7 +14,6 @@ public class DialogueBase : ScriptableObject
         public string myText;
     }
 
-    [Header("Insert Dialogue Information Below")]
-    public Info[] dialogueInfo;
-
+    [Header("Insert QuestDialogs Information Below")]
+    public Info[] QuestInfo;
 }
