@@ -23,6 +23,6 @@ public class QuestStarter : MonoBehaviour
     {
         Debug.Log("사라짐");
         Destroy(splashImage);
-        //QuestManager.instance.EnqueueQuest(quest);
+        QuestManager.instance.EnqueueQuest(quest);
     }
 }

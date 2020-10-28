@@ -9,7 +9,6 @@ public class QuestBase : ScriptableObject
     public class Info
     {
         public string myName;
-        public Sprite portrait;
         [TextArea(3, 8)]
         public string myText;
     }

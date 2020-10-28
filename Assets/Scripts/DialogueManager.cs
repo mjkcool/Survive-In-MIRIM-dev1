@@ -76,6 +76,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = info.myText;
         dialoguePortrait.sprite = info.portrait;
 
+        dialogueName.text = "";
         dialogueText.text = "";
         StartCoroutine(TypeText(info));
     }
