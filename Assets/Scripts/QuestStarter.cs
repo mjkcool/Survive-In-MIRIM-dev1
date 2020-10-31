@@ -6,6 +6,7 @@ public class QuestStarter : MonoBehaviour
 {
     public QuestBase quest;
     public GameObject splashImage;
+    public GameObject QuestObject;
 
     public void start()
     {
@@ -23,6 +24,7 @@ public class QuestStarter : MonoBehaviour
     {
         Debug.Log("사라짐");
         Destroy(splashImage);
+        QuestObject.SetActive(true);
         QuestManager.instance.EnqueueQuest(quest);
     }
 }
