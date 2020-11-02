@@ -26,7 +26,7 @@ public class DialogueManager : MonoBehaviour
     public float delay = 2f;
     public QuestStarter questStarter;
 
-    private bool isCurrentlyTyping;
+    public bool isCurrentlyTyping;
     private string completeText;
     
     public Queue<DialogueBase.Info> dialogueInfo;
@@ -44,6 +44,7 @@ public class DialogueManager : MonoBehaviour
     {
         DialogueBox.SetActive(true); //화면에 띄움
         dialogueInfo.Clear();
+
 
         foreach(DialogueBase.Info info in db.dialogueInfo)
         {
@@ -76,7 +77,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = info.myText;
         dialoguePortrait.sprite = info.portrait;
 
-        dialogueName.text = "";
+    
         dialogueText.text = "";
         StartCoroutine(TypeText(info));
     }

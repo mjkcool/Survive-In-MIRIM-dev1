@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 
+static class constVals{
+    const int Q1_1_cnt = 5, Q1_2_cnt = 3;
+}
+
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager instance;
@@ -25,8 +29,10 @@ public class QuestManager : MonoBehaviour
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
     public Image Portrait;
-    public InputField InputF;
-    public GameObject Input;
+    public InputField Q1_1_InputF;
+    public GameObject Q1_1_Input;
+    public InputField Q1_2_InputF;
+    public GameObject Q1_2_Input;
     public float delay = 2f;
 
     public Queue<QuestBase.Info> QuestInfo;
@@ -48,61 +54,114 @@ public class QuestManager : MonoBehaviour
         DequeueQuest();
     }
 
-    private bool isFalse = true;
-    private string Qname;
-    private string Qtext;
+    private bool flag = true; //기본값은 true
+    private QuestBase.Info Q1_1;
 
     public void DequeueQuest()
     {
-        if(QuestInfo.Count == 4) //첫번째 퀘스트의 첫번째 문제
-        {
-            if(!isFalse)
+        //----------------------------------------------------------------
+        //Q1-1
+        if (QuestInfo.Count == constVals.Q1_1_cnt)
+        {  
+            if (!flag)
             {
-                dialogueName.text = Qname;
-                dialogueText.text = Qtext;
-                Input.SetActive(true);
-            }
-
-            if (InputF.text.ToString().Equals("8"))
-            {
-                
-                QuestBase.Info info = QuestInfo.Dequeue();
-                dialogueName.text = info.myName;
-                dialogueText.text = info.myText;
+                Q1_1_Input.SetActive(true);
+                dialogueName.text = Q1_1.myName;
+                dialogueText.text = Q1_1.myText;
+                flag = true;
             }
             else
             {
-                dialogueName.text = null;
-                dialogueText.text = "그곳이 아닌 것 같아!";
-                InputF.text = null;
-                Input.SetActive(false);
-                isFalse = false;
-                
+                if ((Q1_1_InputF.text.ToString()).Equals("4"))
+                {
+                    QuestBase.Info info = QuestInfo.Dequeue();
+                    dialogueName.text = info.myName;
+                    dialogueText.text = info.myText;
+                    Q1_1_Input.SetActive(false);
+                }
+                else if ((Q1_1_InputF.text.ToString()).Equals(""))
+                {
+                    return;
+                }
+                else
+                {
+                    Q1_1_Input.SetActive(false);
+                    dialogueName.text = null;
+                    dialogueText.text = "그곳이 아닌 것 같아!";
+                    flag = false;
+                }
             }
         }
-        else if(QuestInfo.Count == 0)
+        else if(QuestInfo.Count == 0) //Quest 다이얼로그 끝나면
         {
             EndofQuest();
             return;
         }
         else
         {
-            
             QuestBase.Info info = QuestInfo.Dequeue();
+            if (QuestInfo.Count == constVals.Q1_1_cnt)
+            {
+                Q1_1_Input.SetActive(true);
+                Q1_1 = info;
+            }
             dialogueName.text = info.myName;
             dialogueText.text = info.myText;
+        }//end of Q1-1
 
-            if (QuestInfo.Count == 4)
+        //----------------------------------------------------------------
+        //Q1-2
+        if (QuestInfo.Count == constVals.Q1_2_cnt)
+        {
+            if (!flag)
             {
-                Input.SetActive(true);
-                Qname = info.myName;
-                Qtext = info.myText;
-                //Debug.Log(Qname + Qtext);
+                Q1_2_Input.SetActive(true);
+                dialogueName.text = Q1_2.myName;
+                dialogueText.text = Q1_2.myText;
+                flag = true;
+            }
+            else
+            {
+                if ((Q1_2_InputF.text.ToString()).Equals(""))
+                {
+                    QuestBase.Info info = QuestInfo.Dequeue();
+                    dialogueName.text = info.myName;
+                    dialogueText.text = info.myText;
+                    Q1_2_Input.SetActive(false);
+                }
+                else if ((Q1_2_InputF.text.ToString()).Equals(""))
+                {
+                    return;
+                }
+                else
+                {
+                    Q1_2_Input.SetActive(false);
+                    dialogueName.text = null;
+                    dialogueText.text = "그곳이 아닌 것 같아!";
+                    flag = false;
+                }
             }
         }
+        else if (QuestInfo.Count == 0) //Quest 다이얼로그 끝나면
+        {
+            EndofQuest();
+            return;
+        }
+        else
+        {
+            QuestBase.Info info = QuestInfo.Dequeue();
+            if (QuestInfo.Count == 5)
+            {
+                Q1_2_Input.SetActive(true);
+                Q1_1 = info;
+            }
+            dialogueName.text = info.myName;
+            dialogueText.text = info.myText;
+        }//end of Q1-2
 
     }
 
+    
     public void EndofQuest()
     {
         QuestDialogBox.SetActive(false); //화면에서 없앰
