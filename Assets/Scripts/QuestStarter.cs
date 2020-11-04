@@ -23,7 +23,7 @@ public class QuestStarter : MonoBehaviour
     public void TriggerDialogue()
     {
         Debug.Log("사라짐");
-        Destroy(splashImage);
+        splashImage.SetActive(false);
         QuestObject.SetActive(true);
         QuestManager.instance.EnqueueQuest(quest);
     }

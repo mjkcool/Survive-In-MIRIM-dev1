@@ -14,7 +14,7 @@ public class DialogStarter : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        Destroy(chapterIndex);
+        chapterIndex.SetActive(false);
         DialogueManager.instance.EnqueueDialogue(dialogue);
     }
 }

@@ -8,17 +8,18 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
-    private void Awake(){
-        if(instance != null)
+    private void Awake()
+    {
+        if (instance != null)
         {
-            Debug.LogWarning("fix this"+gameObject.name);
+            Debug.LogWarning("fix this" + gameObject.name);
         }
         else
         {
-            instance = this;            
+            instance = this;
         }
     }
-    
+
     public GameObject DialogueBox;
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
@@ -28,13 +29,11 @@ public class DialogueManager : MonoBehaviour
 
     public bool isCurrentlyTyping;
     private string completeText;
-    
+
     public Queue<DialogueBase.Info> dialogueInfo;
 
     private int dialogtotalcnt;
-
-    
-
+    public bool Q1completed = false;
 
     public void Start()
     {
@@ -48,28 +47,28 @@ public class DialogueManager : MonoBehaviour
         dialogueInfo.Clear();
 
 
-        foreach(DialogueBase.Info info in db.dialogueInfo)
+        foreach (DialogueBase.Info info in db.dialogueInfo)
         {
             dialogueInfo.Enqueue(info);
         }
 
-        dialogtotalcnt = dialogueInfo.Count;
+        dialogtotalcnt = dialogueInfo.Count; //대사 개수가 바뀌어도 코드는 영향을 받지 않게 하는 대처방법. 이 변수가 어디에 쓰이는지 잘 볼것!!
         DequeueDialogue();
     }
 
     public void DequeueDialogue()
     {
-        if(dialogueInfo.Count==0) //챕터 1 종료
+        if (dialogueInfo.Count == 0) //챕터 1 종료
         {
             DialogueBox.SetActive(false);
         }
-        else if(dialogueInfo.Count == dialogtotalcnt-13) //퀘스트 1 시작
+        else if (dialogueInfo.Count == dialogtotalcnt - 13 && (!Q1completed)) //퀘스트 1 시작
         {
             DialogueBox.SetActive(false);
             questStarter.start();
         }
 
-        if(isCurrentlyTyping == true)
+        if (isCurrentlyTyping == true)
         {
             CompleteText();
             StopAllCoroutines();
@@ -83,7 +82,7 @@ public class DialogueManager : MonoBehaviour
         dialogueName.text = info.myName;
         dialogueText.text = info.myText;
         dialoguePortrait.sprite = info.portrait;
-    
+
         dialogueText.text = "";
         StartCoroutine(TypeText(info));
     }
@@ -91,7 +90,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeText(DialogueBase.Info info)
     {
         isCurrentlyTyping = true;
-        foreach(char c in info.myText.ToCharArray())
+        foreach (char c in info.myText.ToCharArray())
         {
             yield return new WaitForSeconds(delay);
             dialogueText.text += c;
@@ -104,7 +103,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = completeText;
     }
 
-    
+
     public void EndofDialogue()
     {
         DialogueBox.SetActive(false); //화면에서 없앰
