@@ -31,6 +31,8 @@ public class DialogueManager : MonoBehaviour
     
     public Queue<DialogueBase.Info> dialogueInfo;
 
+    private int dialogtotalcnt;
+
     
 
 
@@ -51,15 +53,20 @@ public class DialogueManager : MonoBehaviour
             dialogueInfo.Enqueue(info);
         }
 
+        dialogtotalcnt = dialogueInfo.Count;
         DequeueDialogue();
     }
 
     public void DequeueDialogue()
     {
-        if(dialogueInfo.Count == 0)
+        if(dialogueInfo.Count==0) //챕터 1 종료
         {
-            EndofDialogue();
-            return;
+            DialogueBox.SetActive(false);
+        }
+        else if(dialogueInfo.Count == dialogtotalcnt-13) //퀘스트 1 시작
+        {
+            DialogueBox.SetActive(false);
+            questStarter.start();
         }
 
         if(isCurrentlyTyping == true)
@@ -76,7 +83,6 @@ public class DialogueManager : MonoBehaviour
         dialogueName.text = info.myName;
         dialogueText.text = info.myText;
         dialoguePortrait.sprite = info.portrait;
-
     
         dialogueText.text = "";
         StartCoroutine(TypeText(info));

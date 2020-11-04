@@ -202,9 +202,11 @@ MonoBehaviour:
   dialogueName: {fileID: 304059493}
   dialogueText: {fileID: 1321134422}
   Portrait: {fileID: 747945839}
-  Input1: {fileID: 1821099547}
-  Input: {fileID: 1821099545}
-  delay: 0.001
+  Q1_1_InputF: {fileID: 1821099547}
+  Q1_1_Input: {fileID: 1821099545}
+  Q1_2_InputF: {fileID: 1688686777}
+  Q1_2_Input: {fileID: 1688686775}
+  star: {fileID: 0}
 --- !u!4 &14760049
 Transform:
   m_ObjectHideFlags: 0
@@ -306,7 +308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &70581167
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2839,7 +2841,7 @@ MonoBehaviour:
   dialogueName: {fileID: 1937568467}
   dialogueText: {fileID: 1374111550}
   dialoguePortrait: {fileID: 828302626}
-  delay: 0.001
+  delay: 0.06
   questStarter: {fileID: 5365708}
   isCurrentlyTyping: 0
 --- !u!4 &1660748310
@@ -2893,7 +2895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -835.8}
+  m_AnchoredPosition: {x: 0, y: -842.49}
   m_SizeDelta: {x: 955.3, y: 80.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1688686777
@@ -2945,7 +2947,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 50
+  m_CharacterLimit: 52
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []

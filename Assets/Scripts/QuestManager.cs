@@ -5,12 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 
-static class constVals{
-    const int Q1_1_cnt = 5, Q1_2_cnt = 3;
-}
 
 public class QuestManager : MonoBehaviour
 {
+    private const int Q1_1_cnt = 5, Q1_2_cnt = 3;
+
     public static QuestManager instance;
     public void Awake()
     {
@@ -29,11 +28,16 @@ public class QuestManager : MonoBehaviour
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
     public Image Portrait;
+
+    //Q1-1
     public InputField Q1_1_InputF;
     public GameObject Q1_1_Input;
+    //Q1-2
     public InputField Q1_2_InputF;
     public GameObject Q1_2_Input;
-    public float delay = 2f;
+
+    private string Q1_2_CorrectA_str = "=new File(“final+2semester+2020/Korean.pdf”);";
+
 
     public Queue<QuestBase.Info> QuestInfo;
 
@@ -55,22 +59,20 @@ public class QuestManager : MonoBehaviour
     }
 
     private bool flag = true; //기본값은 true
-    private QuestBase.Info Q1_1;
+    private QuestBase.Info Q1_1, Q1_2;
 
     public void DequeueQuest()
     {
-        //----------------------------------------------------------------
-        //Q1-1
-        if (QuestInfo.Count == constVals.Q1_1_cnt)
+        if (QuestInfo.Count == Q1_1_cnt)
         {  
-            if (!flag)
+            if (!flag) //문제 틀린 직후
             {
                 Q1_1_Input.SetActive(true);
                 dialogueName.text = Q1_1.myName;
                 dialogueText.text = Q1_1.myText;
                 flag = true;
             }
-            else
+            else //문제 답 입력
             {
                 if ((Q1_1_InputF.text.ToString()).Equals("4"))
                 {
@@ -79,15 +81,48 @@ public class QuestManager : MonoBehaviour
                     dialogueText.text = info.myText;
                     Q1_1_Input.SetActive(false);
                 }
-                else if ((Q1_1_InputF.text.ToString()).Equals(""))
+                else if ((Q1_1_InputF.text.ToString()).Trim().Equals("") || (Q1_1_InputF.text.ToString())==null)
                 {
-                    return;
+                    return; //미입력시 아무 반응 안함
                 }
-                else
+                else //오답 입력시
                 {
+                    Q1_2_InputF.text = null;
                     Q1_1_Input.SetActive(false);
                     dialogueName.text = null;
                     dialogueText.text = "그곳이 아닌 것 같아!";
+                    flag = false;
+                }
+            }
+        }
+        else if (QuestInfo.Count == Q1_2_cnt)
+        {
+            if (!flag) //문제 틀린 직후
+            {
+                Q1_2_Input.SetActive(true);
+                dialogueName.text = Q1_2.myName;
+                flag = true;
+            }
+            else //문제 답 입력
+            {
+                if ((Q1_2_InputF.text.ToString()).Trim().Equals("") || (Q1_2_InputF.text.ToString())==null) //
+                {
+                    return; //미입력시 아무 반응 안함
+                }
+                else if (isCorrect(Q1_2_InputF.text.ToString()))
+                {
+                    //정답의경우
+                    Invoke("getPrize", 1f);
+                    QuestBase.Info info = QuestInfo.Dequeue();
+                    dialogueName.text = info.myName;
+                    dialogueText.text = info.myText;
+                    Q1_2_Input.SetActive(false);
+                }
+                else //오답 입력시
+                {
+                    Q1_2_Input.SetActive(false);
+                    dialogueName.text = null;
+                    dialogueText.text = "잘못되었습니다";
                     flag = false;
                 }
             }
@@ -100,72 +135,69 @@ public class QuestManager : MonoBehaviour
         else
         {
             QuestBase.Info info = QuestInfo.Dequeue();
-            if (QuestInfo.Count == constVals.Q1_1_cnt)
+            if (QuestInfo.Count == Q1_1_cnt) //문제 최초 로드
             {
                 Q1_1_Input.SetActive(true);
                 Q1_1 = info;
+            }
+            else if (QuestInfo.Count == Q1_2_cnt)
+            {
+                Q1_2_Input.SetActive(true);
+                Q1_2 = info;
             }
             dialogueName.text = info.myName;
             dialogueText.text = info.myText;
         }//end of Q1-1
 
-        //----------------------------------------------------------------
-        //Q1-2
-        if (QuestInfo.Count == constVals.Q1_2_cnt)
-        {
-            if (!flag)
-            {
-                Q1_2_Input.SetActive(true);
-                dialogueName.text = Q1_2.myName;
-                dialogueText.text = Q1_2.myText;
-                flag = true;
-            }
-            else
-            {
-                if ((Q1_2_InputF.text.ToString()).Equals(""))
-                {
-                    QuestBase.Info info = QuestInfo.Dequeue();
-                    dialogueName.text = info.myName;
-                    dialogueText.text = info.myText;
-                    Q1_2_Input.SetActive(false);
-                }
-                else if ((Q1_2_InputF.text.ToString()).Equals(""))
-                {
-                    return;
-                }
-                else
-                {
-                    Q1_2_Input.SetActive(false);
-                    dialogueName.text = null;
-                    dialogueText.text = "그곳이 아닌 것 같아!";
-                    flag = false;
-                }
-            }
-        }
-        else if (QuestInfo.Count == 0) //Quest 다이얼로그 끝나면
-        {
-            EndofQuest();
-            return;
-        }
-        else
-        {
-            QuestBase.Info info = QuestInfo.Dequeue();
-            if (QuestInfo.Count == 5)
-            {
-                Q1_2_Input.SetActive(true);
-                Q1_1 = info;
-            }
-            dialogueName.text = info.myName;
-            dialogueText.text = info.myText;
-        }//end of Q1-2
+     }
 
+     private bool isCorrect(string answer)
+     {
+        //= new File("final+2semester+2020/Korean.pdf");
+
+        answer = answer.Trim();
+        string[] value = answer.Split('\x020');
+        
+        for(int i=0; i<value.Length; i++)
+        {
+            if (!(Q1_2_CorrectA_str.Contains(value[i])))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    
+    public GameObject star;
+
+    private void getPrize()
+    {
+        Debug.Log("get a prize!");
+        
+        
+    }
+
     public void EndofQuest()
     {
         QuestDialogBox.SetActive(false); //화면에서 없앰
-        //Dialog.DequeueDialogue()
+        (DialogueManager.instance.DialogueBox).SetActive(true);
+        //DialogueManager.instance.DequeueDialogue();
     }
+
+    /*private DateTime Delay(int MS)
+    {
+        DateTime ThisMoment = DateTime.Now;
+        TimeSpan duration = new TimeSpan(0, 0, 0, 0, MS);
+        DateTime AfterWards = ThisMoment.Add(duration);
+
+        while (AfterWards >= ThisMoment)
+        {
+            System.Windows.Forms.Application.DoEvents();
+            ThisMoment = DateTime.Now;
+        }
+
+        return DateTime.Now;
+    } */
 
 }
