@@ -112,7 +112,6 @@ public class QuestManager : MonoBehaviour
                 else if (isCorrect(Q1_2_InputF.text.ToString()))
                 {
                     //정답의경우
-                    Invoke("getPrize", 1f);
                     QuestBase.Info info = QuestInfo.Dequeue();
                     dialogueName.text = info.myName;
                     dialogueText.text = info.myText;
@@ -171,33 +170,11 @@ public class QuestManager : MonoBehaviour
 
     public GameObject star;
 
-    private void getPrize()
-    {
-        Debug.Log("get a prize!");
-        
-        
-    }
-
     public void EndofQuest()
     {
-        QuestDialogBox.SetActive(false); //화면에서 없앰
+        Destroy(QuestDialogBox) //화면에서 없앰
         (DialogueManager.instance.DialogueBox).SetActive(true);
-        //DialogueManager.instance.DequeueDialogue();
+        DialogueManager.instance.DequeueDialogue();
     }
-
-    /*private DateTime Delay(int MS)
-    {
-        DateTime ThisMoment = DateTime.Now;
-        TimeSpan duration = new TimeSpan(0, 0, 0, 0, MS);
-        DateTime AfterWards = ThisMoment.Add(duration);
-
-        while (AfterWards >= ThisMoment)
-        {
-            System.Windows.Forms.Application.DoEvents();
-            ThisMoment = DateTime.Now;
-        }
-
-        return DateTime.Now;
-    } */
 
 }
