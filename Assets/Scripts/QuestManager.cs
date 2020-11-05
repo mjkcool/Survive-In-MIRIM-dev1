@@ -155,11 +155,13 @@ public class QuestManager : MonoBehaviour
         //= new File("final+2semester+2020/Korean.pdf");
 
         answer = answer.Trim();
+
+        string total = answer.Replace(" ", "");
         string[] value = answer.Split('\x020');
 
         for (int i = 0; i < value.Length; i++)
         {
-            if (!(Q1_2_CorrectA_str.Contains(value[i])))
+            if (Q1_2_CorrectA_str.Contains(value[i]) && total.Equals(Q1_2_CorrectA_str.Replace(" ", "")))
             {
                 return false;
             }

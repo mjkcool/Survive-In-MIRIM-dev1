@@ -25,7 +25,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Image dialoguePortrait;
     public float delay = 2f;
-    public QuestStarter questStarter;
+    public QuestStarter quest1Starter, quest2Starter;
 
     public bool isCurrentlyTyping;
     private string completeText;
@@ -34,6 +34,7 @@ public class DialogueManager : MonoBehaviour
 
     private int dialogtotalcnt;
     public bool Q1completed = false;
+    private int passed_dialognum;
 
     public void Start()
     {
@@ -52,7 +53,9 @@ public class DialogueManager : MonoBehaviour
             dialogueInfo.Enqueue(info);
         }
 
-        dialogtotalcnt = dialogueInfo.Count; //대사 개수가 바뀌어도 코드는 영향을 받지 않게 하는 대처방법. 이 변수가 어디에 쓰이는지 잘 볼것!!
+        dialogtotalcnt = dialogueInfo.Count;
+        passed_dialognum = 13; //다음 퀘스트 시작 지점 지정
+
         DequeueDialogue();
     }
 
@@ -60,13 +63,20 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogueInfo.Count == 0) //챕터 1 종료
         {
-            DialogueBox.SetActive(false);
+            EndofDialogue();
         }
-        else if (dialogueInfo.Count == dialogtotalcnt - 13 && (!Q1completed)) //퀘스트 1 시작
+        else if ((dialogueInfo.Count == dialogtotalcnt - passed_dialognum) && (!Q1completed)) //퀘스트 1 시작
         {
+            passed_dialognum += 23;
             DialogueBox.SetActive(false);
-            questStarter.start();
-        }
+            quest1Starter.start();
+        }/*
+        else if ((dialogueInfo.Count == dialogtotalcnt - passed_dialognum) && (!Q1completed)) //퀘스트 2 시작
+        {
+            passed_dialognum += 0;
+            DialogueBox.SetActive(false);
+            quest2Starter.start();
+        }*/
 
         if (isCurrentlyTyping == true)
         {
@@ -107,6 +117,5 @@ public class DialogueManager : MonoBehaviour
     public void EndofDialogue()
     {
         DialogueBox.SetActive(false); //화면에서 없앰
-        questStarter.start();
     }
 }
