@@ -7,10 +7,10 @@ using TMPro;
 
 public class QuestStarter : MonoBehaviour
 {
-    public QuestBase quest;
+    public QuestBase[] quests = {};
     public GameObject splashImage;
     public Image IndexImage; //=splashImage
-    public Sprite[] idxs = {};
+    public Sprite[] idxs = {}; //포트레잇 이미지(퀘스트 문제 이미지)
     public GameObject QuestObject;
     public int questnum;
 
@@ -34,6 +34,6 @@ public class QuestStarter : MonoBehaviour
         Debug.Log("사라짐");
         splashImage.SetActive(false); //퀘스트 인덱스 이미지
         QuestObject.SetActive(true);
-        Quest1Manager.instance.EnqueueQuest(quest);
+        Quest1Manager.instance.EnqueueQuest(quests[questnum-1]);
     }
 }

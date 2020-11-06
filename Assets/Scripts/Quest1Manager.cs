@@ -5,10 +5,24 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 
-
 public class Quest1Manager : MonoBehaviour
 {
-    private const int Q1_1_cnt = 5, Q1_2_cnt = 3;
+    //Dialog Objects
+    public GameObject QuestDialogBox;
+    public TextMeshProUGUI dialogueName;
+    public TextMeshProUGUI dialogueText;
+    public Image Portrait;
+    public Sprite portraitImage;
+    //Q1-1
+    public InputField Q1_1_InputF;
+    public GameObject Q1_1_Input;
+    //Q1-2
+    public InputField Q1_2_InputF;
+    public GameObject Q1_2_Input;
+
+    private int dialogtotalcnt;
+    public Queue<QuestBase.Info> QuestInfo;
+
 
     public static Quest1Manager instance;
     public void Awake()
@@ -21,25 +35,7 @@ public class Quest1Manager : MonoBehaviour
         {
             instance = this;
         }
-
     }
-
-    public GameObject QuestDialogBox;
-    public TextMeshProUGUI dialogueName;
-    public TextMeshProUGUI dialogueText;
-    public Image Portrait;
-
-    //Q1-1
-    public InputField Q1_1_InputF;
-    public GameObject Q1_1_Input;
-    //Q1-2
-    public InputField Q1_2_InputF;
-    public GameObject Q1_2_Input;
-
-    private string Q1_2_CorrectA_str = "=new File(“final+2semester+2020/Korean.pdf”);";
-
-
-    public Queue<QuestBase.Info> QuestInfo;
 
     public void Start()
     {
@@ -48,6 +44,7 @@ public class Quest1Manager : MonoBehaviour
 
     public void EnqueueQuest(QuestBase db)
     {
+        Portrait.sprite = portraitImage;
         QuestDialogBox.SetActive(true);
         QuestInfo.Clear();
 
@@ -55,6 +52,7 @@ public class Quest1Manager : MonoBehaviour
         {
             QuestInfo.Enqueue(info);
         }
+        dialogtotalcnt = QuestInfo.Count;
         DequeueQuest();
     }
 
@@ -63,7 +61,7 @@ public class Quest1Manager : MonoBehaviour
 
     public void DequeueQuest()
     {
-        if (QuestInfo.Count == Q1_1_cnt)
+        if (QuestInfo.Count == dialogtotalcnt-3)
         {
             if (!flag) //문제 틀린 직후
             {
@@ -87,7 +85,7 @@ public class Quest1Manager : MonoBehaviour
                 }
                 else //오답 입력시
                 {
-                    Q1_2_InputF.text = null;
+                    Q1_1_InputF.text = null;
                     Q1_1_Input.SetActive(false);
                     dialogueName.text = null;
                     dialogueText.text = "그곳이 아닌 것 같아!";
@@ -95,7 +93,7 @@ public class Quest1Manager : MonoBehaviour
                 }
             }
         }
-        else if (QuestInfo.Count == Q1_2_cnt)
+        else if (QuestInfo.Count == dialogtotalcnt - 5)
         {
             if (!flag) //문제 틀린 직후
             {
@@ -135,39 +133,62 @@ public class Quest1Manager : MonoBehaviour
         else
         {
             QuestBase.Info info = QuestInfo.Dequeue();
-            if (QuestInfo.Count == Q1_1_cnt) //문제 최초 로드
+            if (QuestInfo.Count == dialogtotalcnt - 3) //input 1 최초 로드
             {
                 Q1_1_Input.SetActive(true);
                 Q1_1 = info;
             }
-            else if (QuestInfo.Count == Q1_2_cnt)
+            else if (QuestInfo.Count == dialogtotalcnt - 5) //input 2 최초 로드 
             {
                 Q1_2_Input.SetActive(true);
                 Q1_2 = info;
             }
             dialogueName.text = info.myName;
             dialogueText.text = info.myText;
-        }//end of Q1-1
+        }
 
     }
 
+    private string Q1_2_CorrectA = "= new File ( \"final+2semester+2020/Korean.pdf\" ) ;"; //= new File ( "final+2semester+2020/Korean.pdf" ) ;
+
     private bool isCorrect(string answer)
     {
-        //= new File("final+2semester+2020/Korean.pdf");
+        answer = answer.Trim(); //작동안함
+        string[] answer_value = answer.Split('\x020');
 
-        answer = answer.Trim();
-
-        string total = answer.Replace(" ", "");
-        string[] value = answer.Split('\x020');
-
-        if (!total.Equals(Q1_2_CorrectA_str.Replace(" ", ""))) return false;
-        for (int i = 0; i < value.Length; i++)
+        //전체 문자열이 다르면 오답
+        if (!answer.Replace(" ", "").Equals(Q1_2_CorrectA.Replace(" ", "")))
         {
-            if (Q1_2_CorrectA_str.Contains(value[i]))
+            Debug.Log("안돼요 3");
+            return false;
+        }
+
+        string[] raw_list = Q1_2_CorrectA.Split('\x020');
+
+        //필수 단어들이 들어가 있는지
+        if (answer.IndexOf(raw_list[1]+" ") == -1 || answer.IndexOf(raw_list[2]) == -1 || answer.IndexOf(raw_list[4]) == -1)
+        {
+            Debug.Log("안돼요 2");
+            return false;
+        }
+
+        //문자들의 위치 순서가 맞는지
+        int pos = -1, nowpos;
+        for(int i=0; i<raw_list.Length; i++)
+        {
+            nowpos = answer.IndexOf(raw_list[i]);
+            if (nowpos > -1 && nowpos > pos)
             {
+                pos = nowpos;
+            }
+            else
+            {
+                Debug.Log("안돼요 1");
                 return false;
             }
         }
+
+
         return true;
     }
 

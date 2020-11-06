@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
     public Queue<DialogueBase.Info> dialogueInfo;
 
     private int dialogtotalcnt;
-    public bool Q1completed = false;
+    public bool Q1completed = false, Q2completed = false;
     private int passed_dialognum;
 
     public void Start()
@@ -65,20 +65,21 @@ public class DialogueManager : MonoBehaviour
         {
             EndofDialogue();
         }
-        else if ((dialogueInfo.Count == dialogtotalcnt - passed_dialognum) && (!Q1completed)) //퀘스트 1 시작
+        else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q1completed)) //퀘스트 1 시작
         {
             passed_dialognum += 23;
             DialogueBox.SetActive(false);
             questStarter.questnum = 1;
             questStarter.start();
-        }/*
-        else if ((dialogueInfo.Count == dialogtotalcnt - passed_dialognum) && (!Q1completed)) //퀘스트 2 시작
+        }
+        else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q2completed)) //퀘스트 2 시작
         {
-            passed_dialognum += 0;
+            passed_dialognum += 10;//값 임시
             DialogueBox.SetActive(false);
             questStarter.questnum = 2;
-            quest2Starter.start();
-        }*/
+            Debug.Log("퀘스트2: "+ questStarter.questnum.ToString());
+            questStarter.start();
+        }
 
         if (isCurrentlyTyping == true)
         {
