@@ -10,6 +10,6 @@ public class DialogueButton : MonoBehaviour
     }
     public void GetNextLineQ()
     {
-        QuestManager.instance.DequeueQuest();
+        Quest1Manager.instance.DequeueQuest();
     }
 }

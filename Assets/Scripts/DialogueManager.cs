@@ -25,7 +25,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Image dialoguePortrait;
     public float delay = 2f;
-    public QuestStarter quest1Starter, quest2Starter;
+    public QuestStarter questStarter;
 
     public bool isCurrentlyTyping;
     private string completeText;
@@ -69,12 +69,14 @@ public class DialogueManager : MonoBehaviour
         {
             passed_dialognum += 23;
             DialogueBox.SetActive(false);
-            quest1Starter.start();
+            questStarter.questnum = 1;
+            questStarter.start();
         }/*
         else if ((dialogueInfo.Count == dialogtotalcnt - passed_dialognum) && (!Q1completed)) //퀘스트 2 시작
         {
             passed_dialognum += 0;
             DialogueBox.SetActive(false);
+            questStarter.questnum = 2;
             quest2Starter.start();
         }*/
 

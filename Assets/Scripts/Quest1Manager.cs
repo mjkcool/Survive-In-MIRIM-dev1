@@ -6,11 +6,11 @@ using UnityEngine.Events;
 using TMPro;
 
 
-public class QuestManager : MonoBehaviour
+public class Quest1Manager : MonoBehaviour
 {
     private const int Q1_1_cnt = 5, Q1_2_cnt = 3;
 
-    public static QuestManager instance;
+    public static Quest1Manager instance;
     public void Awake()
     {
         if (instance != null)
@@ -101,6 +101,7 @@ public class QuestManager : MonoBehaviour
             {
                 Q1_2_Input.SetActive(true);
                 dialogueName.text = Q1_2.myName;
+                dialogueText.text = null;
                 flag = true;
             }
             else //문제 답 입력
@@ -159,14 +160,14 @@ public class QuestManager : MonoBehaviour
         string total = answer.Replace(" ", "");
         string[] value = answer.Split('\x020');
 
+        if (!total.Equals(Q1_2_CorrectA_str.Replace(" ", ""))) return false;
         for (int i = 0; i < value.Length; i++)
         {
-            if (Q1_2_CorrectA_str.Contains(value[i]) && total.Equals(Q1_2_CorrectA_str.Replace(" ", "")))
+            if (Q1_2_CorrectA_str.Contains(value[i]))
             {
                 return false;
             }
         }
-
         return true;
     }
 
