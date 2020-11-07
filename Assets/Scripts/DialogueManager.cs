@@ -20,6 +20,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public AudioClip classSound;
+    public AudioClip paperSound;
+    public AudioClip schoolRingSound;
     public GameObject DialogueBox;
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
@@ -32,12 +35,22 @@ public class DialogueManager : MonoBehaviour
 
     public Queue<DialogueBase.Info> dialogueInfo;
 
+    //오디오 
+    public int classSound_dialog;
+    public int classSoundEnd_dialog;
+    public int firstExampaper_dialog;
+    public int firstExampaperEnd_dialog;
+    public int schoolRing_dialog;
+    public int schoolRingEnd_dialog;
+
     private int dialogtotalcnt;
     public bool Q1completed = false, Q2completed = false;
     private int passed_dialognum;
+    private AudioSource audio; //사용할 오디오 소스 컴포넌트
 
     public void Start()
     {
+        audio = GetComponent<AudioSource>();
         dialogueInfo = new Queue<DialogueBase.Info>();  //다이얼로그 초기화
     }
 
@@ -54,6 +67,12 @@ public class DialogueManager : MonoBehaviour
         }
 
         dialogtotalcnt = dialogueInfo.Count;
+        classSound_dialog = 1;
+        classSoundEnd_dialog = 5;
+        firstExampaper_dialog = 8;
+        firstExampaperEnd_dialog = 9;
+        schoolRing_dialog = 14;
+        schoolRingEnd_dialog = 15;
         passed_dialognum = 13; //다음 퀘스트 시작 지점 지정
 
         DequeueDialogue();
@@ -77,7 +96,6 @@ public class DialogueManager : MonoBehaviour
             passed_dialognum += 10;//값 임시
             DialogueBox.SetActive(false);
             questStarter.questnum = 2;
-            Debug.Log("퀘스트2: "+ questStarter.questnum.ToString());
             questStarter.start();
         }
 
@@ -95,6 +113,37 @@ public class DialogueManager : MonoBehaviour
         dialogueName.text = info.myName;
         dialogueText.text = info.myText;
         dialoguePortrait.sprite = info.portrait;
+
+        ////////오디오 설정
+        if (dialogueInfo.Count == dialogtotalcnt - classSound_dialog) //퀘스트 1 시작
+        {
+            GetComponent<AudioSource>().clip = classSound;
+            GetComponent<AudioSource>().Play();
+        }
+        else if (dialogueInfo.Count < dialogtotalcnt - classSoundEnd_dialog)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
+
+        if (dialogueInfo.Count == dialogtotalcnt - firstExampaper_dialog)
+        {
+            GetComponent<AudioSource>().clip = paperSound;
+            GetComponent<AudioSource>().Play();
+        }
+        else if (dialogueInfo.Count == dialogtotalcnt - firstExampaperEnd_dialog)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
+
+        if (dialogueInfo.Count == dialogtotalcnt - schoolRing_dialog)
+        {
+            GetComponent<AudioSource>().clip = schoolRingSound;
+            GetComponent<AudioSource>().Play();
+        }
+        else if (dialogueInfo.Count == dialogtotalcnt - schoolRingEnd_dialog)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
 
         dialogueText.text = "";
         StartCoroutine(TypeText(info));

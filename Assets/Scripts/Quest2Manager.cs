@@ -12,7 +12,7 @@ public class Quest2Manager : MonoBehaviour
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
     public Image Portrait;
-    public Sprite PortraitImage;
+    public Sprite portraitImage;
     //Q1-1
     public InputField InputF_1;
     public GameObject Input_1;
@@ -39,11 +39,14 @@ public class Quest2Manager : MonoBehaviour
     public void Start()
     {
         QuestInfo = new Queue<QuestBase.Info>();  //초기화
-        Portrait.sprite = PortraitImage;
     }
 
     public void EnqueueQuest(QuestBase db)
     {
+        Portrait.sprite = portraitImage;
+        //이미지 사이즈 지정
+        RectTransform rt = (RectTransform)Portrait.transform;
+        rt.sizeDelta = new Vector2(1048, 750);
         QuestDialogBox.SetActive(true);
         QuestInfo.Clear();
 
@@ -52,6 +55,10 @@ public class Quest2Manager : MonoBehaviour
             QuestInfo.Enqueue(info);
         }
         dialogtotalcnt = QuestInfo.Count;
+
+        InputF_1.characterLimit = 2;
+        InputF_2.characterLimit = 50;
+
         DequeueQuest();
     }
 
@@ -60,7 +67,7 @@ public class Quest2Manager : MonoBehaviour
 
     public void DequeueQuest()
     {
-        if (QuestInfo.Count == dialogtotalcnt - 3)
+        if (QuestInfo.Count == dialogtotalcnt - 4)
         {
             if (!flag) //문제 틀린 직후
             {
@@ -71,7 +78,7 @@ public class Quest2Manager : MonoBehaviour
             }
             else //문제 답 입력
             {
-                if ((InputF_1.text.ToString()).Equals("4"))
+                if ((InputF_1.text.ToString()).Equals("9"))
                 {
                     QuestBase.Info info = QuestInfo.Dequeue();
                     dialogueName.text = info.myName;
@@ -92,7 +99,7 @@ public class Quest2Manager : MonoBehaviour
                 }
             }
         }
-        else if (QuestInfo.Count == dialogtotalcnt - 5)
+        else if (QuestInfo.Count == dialogtotalcnt - 7)
         {
             if (!flag) //문제 틀린 직후
             {
@@ -132,12 +139,12 @@ public class Quest2Manager : MonoBehaviour
         else
         {
             QuestBase.Info info = QuestInfo.Dequeue();
-            if (QuestInfo.Count == dialogtotalcnt - 3) //input 1 최초 로드
+           if (QuestInfo.Count == dialogtotalcnt - 4) //input 1 최초 로드
             {
                 Input_1.SetActive(true);
                 Q2_1 = info;
             }
-            else if (QuestInfo.Count == dialogtotalcnt - 5) //input 2 최초 로드 
+            else if (QuestInfo.Count == dialogtotalcnt - 7) //input 2 최초 로드 
             {
                 Input_2.SetActive(true);
                 Q2_2 = info;
@@ -148,9 +155,42 @@ public class Quest2Manager : MonoBehaviour
 
     }
 
+    private string Q2_2_CorrectA = "-= multiple_choice_minus_score";
+
     private bool isCorrect(string answer)
     {
-        
+        answer = answer.Trim();
+        string[] answer_value = answer.Split('\x020');
+
+        string[] raw_list = Q2_2_CorrectA.Split('\x020');
+        //필수 단어들이 들어가 있는지
+        if (answer.IndexOf(raw_list[0]) == -1 || answer.IndexOf(raw_list[1]) == -1)
+        {
+            return false;
+        }
+
+        //전체 문자열이 다르면 오답
+        if (!answer.Replace(" ", "").Equals(Q2_2_CorrectA.Replace(" ", "")))
+        {
+            return false;
+        }
+
+        //문자들의 위치 순서가 맞는지
+        int pos = -1, nowpos;
+        for (int i = 0; i < raw_list.Length; i++)
+        {
+            nowpos = answer.IndexOf(raw_list[i]);
+            if (nowpos > -1 && nowpos > pos)
+            {
+                pos = nowpos;
+            }
+            else
+            {
+                Debug.Log("안돼요 1");
+                return false;
+            }
+        }
+
         return true;
     }
 

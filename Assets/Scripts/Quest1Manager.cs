@@ -14,11 +14,11 @@ public class Quest1Manager : MonoBehaviour
     public Image Portrait;
     public Sprite portraitImage;
     //Q1-1
-    public InputField Q1_1_InputF;
-    public GameObject Q1_1_Input;
+    public InputField InputF_1;
+    public GameObject Input_1;
     //Q1-2
-    public InputField Q1_2_InputF;
-    public GameObject Q1_2_Input;
+    public InputField InputF_2;
+    public GameObject Input_2;
 
     private int dialogtotalcnt;
     public Queue<QuestBase.Info> QuestInfo;
@@ -45,6 +45,9 @@ public class Quest1Manager : MonoBehaviour
     public void EnqueueQuest(QuestBase db)
     {
         Portrait.sprite = portraitImage;
+        //이미지 사이즈 지정
+        RectTransform rt = (RectTransform)Portrait.transform;
+        rt.sizeDelta = new Vector2(1048, 1400);
         QuestDialogBox.SetActive(true);
         QuestInfo.Clear();
 
@@ -53,6 +56,10 @@ public class Quest1Manager : MonoBehaviour
             QuestInfo.Enqueue(info);
         }
         dialogtotalcnt = QuestInfo.Count;
+
+        InputF_1.characterLimit = 2;
+        InputF_2.characterLimit = 52;
+
         DequeueQuest();
     }
 
@@ -65,28 +72,28 @@ public class Quest1Manager : MonoBehaviour
         {
             if (!flag) //문제 틀린 직후
             {
-                Q1_1_Input.SetActive(true);
+                Input_1.SetActive(true);
                 dialogueName.text = Q1_1.myName;
                 dialogueText.text = Q1_1.myText;
                 flag = true;
             }
             else //문제 답 입력
             {
-                if ((Q1_1_InputF.text.ToString()).Equals("4"))
+                if ((InputF_1.text.ToString()).Equals("9"))
                 {
                     QuestBase.Info info = QuestInfo.Dequeue();
                     dialogueName.text = info.myName;
                     dialogueText.text = info.myText;
-                    Q1_1_Input.SetActive(false);
+                    Input_1.SetActive(false);
                 }
-                else if ((Q1_1_InputF.text.ToString()).Trim().Equals("") || (Q1_1_InputF.text.ToString()) == null)
+                else if ((InputF_1.text.ToString()).Trim().Equals("") || (InputF_1.text.ToString()) == null)
                 {
                     return; //미입력시 아무 반응 안함
                 }
                 else //오답 입력시
                 {
-                    Q1_1_InputF.text = null;
-                    Q1_1_Input.SetActive(false);
+                    InputF_1.text = null;
+                    Input_1.SetActive(false);
                     dialogueName.text = null;
                     dialogueText.text = "그곳이 아닌 것 같아!";
                     flag = false;
@@ -97,28 +104,28 @@ public class Quest1Manager : MonoBehaviour
         {
             if (!flag) //문제 틀린 직후
             {
-                Q1_2_Input.SetActive(true);
+                Input_2.SetActive(true);
                 dialogueName.text = Q1_2.myName;
                 dialogueText.text = null;
                 flag = true;
             }
             else //문제 답 입력
             {
-                if ((Q1_2_InputF.text.ToString()).Trim().Equals("") || (Q1_2_InputF.text.ToString()) == null) //
+                if ((InputF_2.text.ToString()).Trim().Equals("") || (InputF_2.text.ToString()) == null) //
                 {
                     return; //미입력시 아무 반응 안함
                 }
-                else if (isCorrect(Q1_2_InputF.text.ToString()))
+                else if (isCorrect(InputF_2.text.ToString()))
                 {
                     //정답의경우
                     QuestBase.Info info = QuestInfo.Dequeue();
                     dialogueName.text = info.myName;
                     dialogueText.text = info.myText;
-                    Q1_2_Input.SetActive(false);
+                    Input_2.SetActive(false);
                 }
                 else //오답 입력시
                 {
-                    Q1_2_Input.SetActive(false);
+                    Input_2.SetActive(false);
                     dialogueName.text = null;
                     dialogueText.text = "잘못되었습니다";
                     flag = false;
@@ -135,12 +142,12 @@ public class Quest1Manager : MonoBehaviour
             QuestBase.Info info = QuestInfo.Dequeue();
             if (QuestInfo.Count == dialogtotalcnt - 3) //input 1 최초 로드
             {
-                Q1_1_Input.SetActive(true);
+                Input_2.SetActive(true);
                 Q1_1 = info;
             }
             else if (QuestInfo.Count == dialogtotalcnt - 5) //input 2 최초 로드 
             {
-                Q1_2_Input.SetActive(true);
+                Input_2.SetActive(true);
                 Q1_2 = info;
             }
             dialogueName.text = info.myName;
@@ -149,21 +156,21 @@ public class Quest1Manager : MonoBehaviour
 
     }
 
-    private string Q1_2_CorrectA = "= new File ( \"final+2semester+2020/Korean.pdf\" ) ;"; //= new File ( "final+2semester+2020/Korean.pdf" ) ;
+    private string Correct_answer = "= new File ( \"final+2semester+2020/Korean.pdf\" ) ;"; //= new File ( "final+2semester+2020/Korean.pdf" ) ;
 
     private bool isCorrect(string answer)
     {
-        answer = answer.Trim(); //작동안함
+        answer = answer.Trim();
         string[] answer_value = answer.Split('\x020');
 
         //전체 문자열이 다르면 오답
-        if (!answer.Replace(" ", "").Equals(Q1_2_CorrectA.Replace(" ", "")))
+        if (!answer.Replace(" ", "").Equals(Correct_answer.Replace(" ", "")))
         {
             Debug.Log("안돼요 3");
             return false;
         }
 
-        string[] raw_list = Q1_2_CorrectA.Split('\x020');
+        string[] raw_list = Correct_answer.Split('\x020');
 
         //필수 단어들이 들어가 있는지
         if (answer.IndexOf(raw_list[1]+" ") == -1 || answer.IndexOf(raw_list[2]) == -1 || answer.IndexOf(raw_list[4]) == -1)
@@ -188,7 +195,6 @@ public class Quest1Manager : MonoBehaviour
             }
         }
 
-
         return true;
     }
 
@@ -196,6 +202,7 @@ public class Quest1Manager : MonoBehaviour
 
     public void EndofQuest()
     {
+        Destroy(transform.Find("othertexts"));
         QuestDialogBox.SetActive(false);//화면에서 없앰
         DialogueManager.instance.Q1completed = true;
         (DialogueManager.instance.DialogueBox).SetActive(true);

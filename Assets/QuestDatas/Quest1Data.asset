@@ -22,13 +22,13 @@ MonoBehaviour:
   - myName: "ERROR \uBC1C\uC0DD"
     myText: "\t\uBC88\uC9F8 \uC904\uC758 \uCF54\uB4DC\uAC00 \uB17C\uB9AC\uC624\uB958\uB97C
       \uBC1C\uC0DD\uC2DC\uD0A4\uACE0 \uC788\uC5B4"
-  - myName: "ERROR \uBC1C\uC0DD"
+  - myName: DEBUGGING
     myText: "\uADF8\uB807\uB2E4\uBA74 \uC774 \uCF54\uB4DC \uD55C\uC904\uC744 \uACE0\uCCD0\uBCFC\uAE4C? "
-  - myName: "ERROR \uBC1C\uC0DD"
+  - myName: DEBUGGING
     myText: 
-  - myName: "ERROR \uBC1C\uC0DD"
+  - myName: "ERROR \uD574\uACB0"
     myText: "(\uAD6D\uC5B4\uC2DC\uD5D8\uC9C0)"
-  - myName: "ERROR \uBC1C\uC0DD"
+  - myName: "ERROR \uD574\uACB0"
     myText: "\uC131\uACF5\uC801\uC774\uC57C! \uD574\uB0C8\uC5B4"
-  - myName: "ERROR \uBC1C\uC0DD"
+  - myName: 
     myText: 

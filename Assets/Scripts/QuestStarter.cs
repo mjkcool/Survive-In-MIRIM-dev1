@@ -34,6 +34,22 @@ public class QuestStarter : MonoBehaviour
         Debug.Log("사라짐");
         splashImage.SetActive(false); //퀘스트 인덱스 이미지
         QuestObject.SetActive(true);
-        Quest1Manager.instance.EnqueueQuest(quests[questnum-1]);
+        switch (questnum)
+        {
+            case 1:
+                Quest1Manager.instance.EnqueueQuest(quests[questnum - 1]);
+                break;
+            case 2:
+                Quest2Manager.instance.EnqueueQuest(quests[questnum - 1]);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default: break;
+        }
+        
     }
 }
