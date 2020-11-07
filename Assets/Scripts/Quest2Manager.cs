@@ -48,6 +48,7 @@ public class Quest2Manager : MonoBehaviour
         RectTransform rt = (RectTransform)Portrait.transform;
         rt.sizeDelta = new Vector2(1048, 750);
         QuestDialogBox.SetActive(true);
+        Destroy(GameObject.Find("othertexts"));
         QuestInfo.Clear();
 
         foreach (QuestBase.Info info in db.QuestInfo)
@@ -63,7 +64,7 @@ public class Quest2Manager : MonoBehaviour
     }
 
     private bool flag = true; //기본값은 true
-    private QuestBase.Info Q2_1, Q2_2;
+    private QuestBase.Info Qinfo_1, Qinfo_2;
 
     public void DequeueQuest()
     {
@@ -72,8 +73,8 @@ public class Quest2Manager : MonoBehaviour
             if (!flag) //문제 틀린 직후
             {
                 Input_1.SetActive(true);
-                dialogueName.text = Q2_1.myName;
-                dialogueText.text = Q2_1.myText;
+                dialogueName.text = Qinfo_1.myName;
+                dialogueText.text = Qinfo_1.myText;
                 flag = true;
             }
             else //문제 답 입력
@@ -98,13 +99,14 @@ public class Quest2Manager : MonoBehaviour
                     flag = false;
                 }
             }
+            InputF_1.text = null;
         }
         else if (QuestInfo.Count == dialogtotalcnt - 7)
         {
             if (!flag) //문제 틀린 직후
             {
                 Input_2.SetActive(true);
-                dialogueName.text = Q2_2.myName;
+                dialogueName.text = Qinfo_2.myName;
                 dialogueText.text = null;
                 flag = true;
             }
@@ -120,6 +122,7 @@ public class Quest2Manager : MonoBehaviour
                     QuestBase.Info info = QuestInfo.Dequeue();
                     dialogueName.text = info.myName;
                     dialogueText.text = info.myText;
+                    InputF_2.text = null;
                     Input_2.SetActive(false);
                 }
                 else //오답 입력시
@@ -139,30 +142,29 @@ public class Quest2Manager : MonoBehaviour
         else
         {
             QuestBase.Info info = QuestInfo.Dequeue();
-           if (QuestInfo.Count == dialogtotalcnt - 4) //input 1 최초 로드
+            if (QuestInfo.Count == dialogtotalcnt - 4) //input 1 최초 로드
             {
                 Input_1.SetActive(true);
-                Q2_1 = info;
+                Qinfo_1 = info;
             }
             else if (QuestInfo.Count == dialogtotalcnt - 7) //input 2 최초 로드 
             {
                 Input_2.SetActive(true);
-                Q2_2 = info;
+                Qinfo_2 = info;
             }
             dialogueName.text = info.myName;
             dialogueText.text = info.myText;
         }
-
     }
 
-    private string Q2_2_CorrectA = "-= multiple_choice_minus_score";
+    private string Qinfo_2_CorrectA = "-= multiple_choice_minus_score";
 
     private bool isCorrect(string answer)
     {
         answer = answer.Trim();
         string[] answer_value = answer.Split('\x020');
 
-        string[] raw_list = Q2_2_CorrectA.Split('\x020');
+        string[] raw_list = Qinfo_2_CorrectA.Split('\x020');
         //필수 단어들이 들어가 있는지
         if (answer.IndexOf(raw_list[0]) == -1 || answer.IndexOf(raw_list[1]) == -1)
         {
@@ -170,7 +172,7 @@ public class Quest2Manager : MonoBehaviour
         }
 
         //전체 문자열이 다르면 오답
-        if (!answer.Replace(" ", "").Equals(Q2_2_CorrectA.Replace(" ", "")))
+        if (!answer.Replace(" ", "").Equals(Qinfo_2_CorrectA.Replace(" ", "")))
         {
             return false;
         }
@@ -200,6 +202,5 @@ public class Quest2Manager : MonoBehaviour
         DialogueManager.instance.Q2completed = true;
         (DialogueManager.instance.DialogueBox).SetActive(true);
         DialogueManager.instance.DequeueDialogue();
-      
     }
 }

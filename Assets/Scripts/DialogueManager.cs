@@ -23,12 +23,14 @@ public class DialogueManager : MonoBehaviour
     public AudioClip classSound;
     public AudioClip paperSound;
     public AudioClip schoolRingSound;
+
     public GameObject DialogueBox;
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
     public Image dialoguePortrait;
     public float delay = 2f;
     public QuestStarter questStarter;
+    public DialogueButton DialogBtn;
 
     public bool isCurrentlyTyping;
     private string completeText;
@@ -44,7 +46,7 @@ public class DialogueManager : MonoBehaviour
     public int schoolRingEnd_dialog;
 
     private int dialogtotalcnt;
-    public bool Q1completed = false, Q2completed = false;
+    public bool Q1completed = false, Q2completed = false, Q3completed = false, Q4completed = false, Q5completed=false;
     private int passed_dialognum;
     private AudioSource audio; //사용할 오디오 소스 컴포넌트
 
@@ -59,7 +61,6 @@ public class DialogueManager : MonoBehaviour
     {
         DialogueBox.SetActive(true); //화면에 띄움
         dialogueInfo.Clear();
-
 
         foreach (DialogueBase.Info info in db.dialogueInfo)
         {
@@ -86,17 +87,22 @@ public class DialogueManager : MonoBehaviour
         }
         else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q1completed)) //퀘스트 1 시작
         {
-            passed_dialognum += 23;
+            passed_dialognum += 24;
             DialogueBox.SetActive(false);
+            DialogBtn.questnum = 1;
             questStarter.questnum = 1;
             questStarter.start();
         }
         else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q2completed)) //퀘스트 2 시작
         {
-            passed_dialognum += 10;//값 임시
+            passed_dialognum += 26;
             DialogueBox.SetActive(false);
+            DialogBtn.questnum = 2;
             questStarter.questnum = 2;
             questStarter.start();
+        }else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 2 시작
+        {
+            passed_dialognum += 21;
         }
 
         if (isCurrentlyTyping == true)
@@ -115,7 +121,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePortrait.sprite = info.portrait;
 
         ////////오디오 설정
-        if (dialogueInfo.Count == dialogtotalcnt - classSound_dialog) //퀘스트 1 시작
+        if (dialogueInfo.Count == dialogtotalcnt - classSound_dialog)
         {
             GetComponent<AudioSource>().clip = classSound;
             GetComponent<AudioSource>().Play();

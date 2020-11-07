@@ -12,4 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18bcaccbbd961184298d7592feee9163, type: 3}
   m_Name: Quest4Data
   m_EditorClassIdentifier: 
-  QuestInfo: []
+  QuestInfo:
+  - myName: "\uC5D0\uB7EC \uBC1C\uC0DD"
+    myText: "\uC2DC\uD5D8 \uC2DC\uAC04\uC740 45\uBD84\uC774\uB2C8\uAE4C \uC2DC\uD5D8
+      \uC2DC\uC791 \uD6C4 40\uBD84\uC774 \uC9C0\uB098\uBA74 \uC54C\uB9BC\uC74C\uC131\uC774
+      \uB098\uC624\uAC8C \uB3FC"
+  - myName: "\uC5D0\uB7EC \uBC1C\uC0DD"
+    myText: "\uC2DC\uD5D8\uC2DC\uAC04\uC774 5\uBD84\uC774 \uB0A8\uC558\uB2E4\uACE0
+      \uB9D0\uC774\uC57C"
+  - myName: "\uC5D0\uB7EC \uBC1C\uC0DD"
+    myText: 
+  - myName: "\xB7\u2022 \uB514\uBC84\uAE45 \uC911 \u2022\xB7"
+    myText: 
+  - myName: 
+    myText: 
+  - myName: 
+    myText: 
+  - myName: 
+    myText: 
+  - myName: 
+    myText: 
+  - myName: 
+    myText: 
+  - myName: 
+    myText: 
+  - myName: 
+    myText: 
+  - myName: 
+    myText: 
+  - myName: 
+    myText: 
+  - myName: 
+    myText: 
+  - myName: 
+    myText: 
