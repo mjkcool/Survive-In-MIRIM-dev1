@@ -65,7 +65,7 @@ public class Quest3Manager : MonoBehaviour
 
     public void DequeueQuest()
     {
-        if (QuestInfo.Count == dialogtotalcnt - 3)
+        if (QuestInfo.Count == dialogtotalcnt - 5)
         {
             if (!flag) //문제 틀린 직후
             {
@@ -97,7 +97,7 @@ public class Quest3Manager : MonoBehaviour
             }
             InputF_1.text = null;
         }
-        else if (QuestInfo.Count == dialogtotalcnt - 5)
+        else if (QuestInfo.Count == dialogtotalcnt - 8)
         {
             if (!flag) //문제 틀린 직후
             {
