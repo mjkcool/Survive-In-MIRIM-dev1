@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 
-public class Quest5Manager : MonoBehaviour
+public class Quest4Manager : MonoBehaviour
 {
     //Dialog Objects
     public GameObject QuestDialogBox;
@@ -23,7 +23,8 @@ public class Quest5Manager : MonoBehaviour
     private int dialogtotalcnt;
     public Queue<QuestBase.Info> QuestInfo;
 
-    public static Quest5Manager instance;
+    public static Quest4Manager instance;
+
     public void Awake()
     {
         if (instance != null)
@@ -46,7 +47,7 @@ public class Quest5Manager : MonoBehaviour
         Portrait.sprite = portraitImage;
         //이미지 사이즈 지정
         RectTransform rt = (RectTransform)Portrait.transform;
-        rt.sizeDelta = new Vector2(1048, 700);
+        rt.sizeDelta = new Vector2(1048, 600);
         QuestDialogBox.SetActive(true);
         QuestInfo.Clear();
 
@@ -56,17 +57,15 @@ public class Quest5Manager : MonoBehaviour
         }
         dialogtotalcnt = QuestInfo.Count;
 
-        InputF_1.characterLimit = 2;
-        InputF_2.characterLimit = 50;
-
         DequeueQuest();
     }
+
     private bool flag = true; //기본값은 true
     private QuestBase.Info Qinfo_1, Qinfo_2;
 
     public void DequeueQuest()
     {
-        if (QuestInfo.Count == dialogtotalcnt - 3)
+        if (QuestInfo.Count == dialogtotalcnt - 5)
         {
             if (!flag) //문제 틀린 직후
             {
@@ -77,7 +76,7 @@ public class Quest5Manager : MonoBehaviour
             }
             else //문제 답 입력
             {
-                if ((InputF_1.text.ToString()).Equals("4"))
+                if ((InputF_1.text.ToString()).Equals("5"))
                 {
                     QuestBase.Info info = QuestInfo.Dequeue();
                     dialogueName.text = info.myName;
@@ -90,6 +89,7 @@ public class Quest5Manager : MonoBehaviour
                 }
                 else //오답 입력시
                 {
+                    InputF_1.text = null;
                     Input_1.SetActive(false);
                     dialogueName.text = null;
                     dialogueText.text = "그곳이 아닌 것 같아!";
@@ -98,7 +98,7 @@ public class Quest5Manager : MonoBehaviour
             }
             InputF_1.text = null;
         }
-        else if (QuestInfo.Count == dialogtotalcnt - 5)
+        else if (QuestInfo.Count == dialogtotalcnt - 7)
         {
             if (!flag) //문제 틀린 직후
             {
@@ -139,12 +139,12 @@ public class Quest5Manager : MonoBehaviour
         else
         {
             QuestBase.Info info = QuestInfo.Dequeue();
-            if (QuestInfo.Count == dialogtotalcnt - 3) //input 1 최초 로드
+            if (QuestInfo.Count == dialogtotalcnt - 5) //input 1 최초 로드
             {
                 Input_1.SetActive(true);
                 Qinfo_1 = info;
             }
-            else if (QuestInfo.Count == dialogtotalcnt - 5) //input 2 최초 로드 
+            else if (QuestInfo.Count == dialogtotalcnt - 7) //input 2 최초 로드 
             {
                 Input_2.SetActive(true);
                 Qinfo_2 = info;
@@ -152,29 +152,25 @@ public class Quest5Manager : MonoBehaviour
             dialogueName.text = info.myName;
             dialogueText.text = info.myText;
         }
-
     }
 
-    private string Correct_answer = "number = Integer.parseInt ( student_number ) ;";
+    private string Qinfo_2_CorrectA = "Thread.sleep ( 60000 ) ;";
 
     private bool isCorrect(string answer)
     {
         answer = answer.Trim();
         string[] answer_value = answer.Split('\x020');
 
-        //전체 문자열이 다르면 오답
-        if (!answer.Replace(" ", "").Equals(Correct_answer.Replace(" ", "")))
+        string[] raw_list = Qinfo_2_CorrectA.Split('\x020');
+        //필수 단어들이 들어가 있는지
+        if (answer.IndexOf(raw_list[0]) == -1 || answer.IndexOf(raw_list[2]) == -1)
         {
-            Debug.Log("안돼요 3");
             return false;
         }
 
-        string[] raw_list = Correct_answer.Split('\x020');
-
-        //필수 단어들이 들어가 있는지
-        if (answer.IndexOf(raw_list[0]) == -1 || answer.IndexOf(raw_list[2]) == -1 || answer.IndexOf(raw_list[4]) == -1)
+        //전체 문자열이 다르면 오답
+        if (!answer.Replace(" ", "").Equals(Qinfo_2_CorrectA.Replace(" ", "")))
         {
-            Debug.Log("안돼요 2");
             return false;
         }
 
@@ -193,16 +189,14 @@ public class Quest5Manager : MonoBehaviour
                 return false;
             }
         }
-
         return true;
     }
 
-    public GameObject star;
 
     public void EndofQuest()
     {
         QuestDialogBox.SetActive(false);//화면에서 없앰
-        DialogueManager.instance.Q5completed = true;
+        DialogueManager.instance.Q4completed = true;
         (DialogueManager.instance.DialogueBox).SetActive(true);
         DialogueManager.instance.DequeueDialogue();
     }

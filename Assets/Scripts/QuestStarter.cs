@@ -43,10 +43,13 @@ public class QuestStarter : MonoBehaviour
                 Quest2Manager.instance.EnqueueQuest(quests[questnum - 1]);
                 break;
             case 3:
+                Quest3Manager.instance.EnqueueQuest(quests[questnum - 1]);
                 break;
             case 4:
+                Quest4Manager.instance.EnqueueQuest(quests[questnum - 1]);
                 break;
             case 5:
+                Quest5Manager.instance.EnqueueQuest(quests[questnum - 1]);
                 break;
             default: break;
         }

@@ -74,6 +74,7 @@ public class DialogueManager : MonoBehaviour
         firstExampaperEnd_dialog = 9;
         schoolRing_dialog = 14;
         schoolRingEnd_dialog = 15;
+
         passed_dialognum = 13; //다음 퀘스트 시작 지점 지정
 
         DequeueDialogue();
@@ -95,7 +96,7 @@ public class DialogueManager : MonoBehaviour
         }
         else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q2completed)) //퀘스트 2 시작
         {
-            passed_dialognum += 26;
+            passed_dialognum += 25;
             DialogueBox.SetActive(false);
             DialogBtn.questnum = 2;
             questStarter.questnum = 2;
@@ -106,6 +107,20 @@ public class DialogueManager : MonoBehaviour
             DialogueBox.SetActive(false);
             DialogBtn.questnum = 3;
             questStarter.questnum = 3;
+            questStarter.start();
+        }else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 4 시작
+        {
+            passed_dialognum += 26;
+            DialogueBox.SetActive(false);
+            DialogBtn.questnum = 4;
+            questStarter.questnum = 4;
+            questStarter.start();
+        }
+        else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 5 시작
+        {
+            DialogueBox.SetActive(false);
+            DialogBtn.questnum = 5;
+            questStarter.questnum = 5;
             questStarter.start();
         }
 
