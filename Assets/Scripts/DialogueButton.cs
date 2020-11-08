@@ -21,13 +21,13 @@ public class DialogueButton : MonoBehaviour
                 Quest2Manager.instance.DequeueQuest();
                 break;
             case 3:
-                //Quest3Manager.instance.DequeueQuest();
+                Quest3Manager.instance.DequeueQuest();
                 break;
             case 4:
-                //Quest4Manager.instance.DequeueQuest();
+                Quest4Manager.instance.DequeueQuest();
                 break;
             case 5:
-                //Quest5Manager.instance.DequeueQuest();
+                Quest5Manager.instance.DequeueQuest();
                 break;
             default: break;
         }

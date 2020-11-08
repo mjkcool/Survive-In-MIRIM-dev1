@@ -28,8 +28,8 @@ public class Quest1Manager : MonoBehaviour
     private int dialogtotalcnt;
     public Queue<QuestBase.Info> QuestInfo;
 
-
     public static Quest1Manager instance;
+
     public void Awake()
     {
         if (instance != null)
@@ -120,39 +120,34 @@ public class Quest1Manager : MonoBehaviour
                 {
                     return; //미입력시 아무 반응 안함
                 }
-                else if (isCorrect(InputF_2.text.ToString()))
+                else
                 {
-                    QuestDialogBox.SetActive(false);
-                    //정답의경우
-                    LoadingAnimation.SetActive(true);
-                    LoadingGround.SetActive(true);
-                    Destroy(LoadingAnimation, 7);
-                    Destroy(LoadingGround, 7);
-                    QuestDialogBox.SetActive(true);
 
-                    QuestBase.Info info = QuestInfo.Dequeue();
-                    dialogueName.text = info.myName;
-                    dialogueText.text = info.myText;
-                    Input_2.SetActive(false);
-                }
-                else //오답 입력시
-                {
-                    QuestDialogBox.SetActive(false);
-                    LoadingAnimation.SetActive(true);
-                    LoadingGround.SetActive(true);
-                    Destroy(LoadingAnimation, 7);
-                    Destroy(LoadingGround, 7);
-                    QuestDialogBox.SetActive(true);
+                    QuestManager.instance.startLoading(isCorrect(InputF_2.text.ToString()));
 
-                    Input_2.SetActive(false);
-                    dialogueName.text = null;
-                    dialogueText.text = "잘못되었습니다";
-                    flag = false;
+                    if (isCorrect(InputF_2.text.ToString()))
+                    {
+                        //정답의경우
+
+                        QuestBase.Info info = QuestInfo.Dequeue();
+                        dialogueName.text = info.myName;
+                        dialogueText.text = info.myText;
+                        Input_2.SetActive(false);
+                    }
+                    else //오답 입력시
+                    {
+                        Input_2.SetActive(false);
+                        dialogueName.text = null;
+                        dialogueText.text = "잘못되었습니다";
+                        flag = false;
+                    }
                 }
+                
             }
         }
         else if (QuestInfo.Count == 0) //Quest 다이얼로그 끝나면
         {
+
             EndofQuest();
             return;
         }
@@ -218,20 +213,13 @@ public class Quest1Manager : MonoBehaviour
     }
 
 
-    public void EndofQuest()
+    private void EndofQuest()
     {
         Destroy(transform.Find("othertexts"));
-
-
         QuestDialogBox.SetActive(false);//화면에서 없앰
         DialogueManager.instance.Q1completed = true;
         (DialogueManager.instance.DialogueBox).SetActive(true);
         DialogueManager.instance.DequeueDialogue();
-    }
-
-    public void starAnim()
-    {
-        starAnimation.SetActive(false);
     }
 
 }

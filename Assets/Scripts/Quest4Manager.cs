@@ -109,25 +109,32 @@ public class Quest4Manager : MonoBehaviour
             }
             else //문제 답 입력
             {
-                if ((InputF_2.text.ToString()).Trim().Equals("") || (InputF_2.text.ToString()) == null) //
+                if ((InputF_2.text.ToString()).Trim().Equals("") || (InputF_2.text.ToString()) == null)
                 {
                     return; //미입력시 아무 반응 안함
                 }
-                else if (isCorrect(InputF_2.text.ToString()))
+                else
                 {
-                    //정답의경우
-                    QuestBase.Info info = QuestInfo.Dequeue();
-                    dialogueName.text = info.myName;
-                    dialogueText.text = info.myText;
-                    InputF_2.text = null;
-                    Input_2.SetActive(false);
-                }
-                else //오답 입력시
-                {
-                    Input_2.SetActive(false);
-                    dialogueName.text = null;
-                    dialogueText.text = "잘못되었습니다";
-                    flag = false;
+                    QuestDialogBox.SetActive(false);
+                    QuestManager.instance.startLoading(isCorrect(InputF_2.text.ToString()));
+                    QuestDialogBox.SetActive(true);
+
+                    if (isCorrect(InputF_2.text.ToString()))
+                    {
+                        //정답의경우
+                        QuestBase.Info info = QuestInfo.Dequeue();
+                        dialogueName.text = info.myName;
+                        dialogueText.text = info.myText;
+                        InputF_2.text = null;
+                        Input_2.SetActive(false);
+                    }
+                    else //오답 입력시
+                    {
+                        Input_2.SetActive(false);
+                        dialogueName.text = null;
+                        dialogueText.text = "잘못되었습니다";
+                        flag = false;
+                    }
                 }
             }
         }
@@ -193,7 +200,7 @@ public class Quest4Manager : MonoBehaviour
     }
 
 
-    public void EndofQuest()
+    private void EndofQuest()
     {
         QuestDialogBox.SetActive(false);//화면에서 없앰
         DialogueManager.instance.Q4completed = true;

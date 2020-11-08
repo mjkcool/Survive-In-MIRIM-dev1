@@ -101,7 +101,8 @@ public class DialogueManager : MonoBehaviour
             DialogBtn.questnum = 2;
             questStarter.questnum = 2;
             questStarter.start();
-        }else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 3 시작
+        }
+        else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 3 시작
         {
             passed_dialognum += 21;
             DialogueBox.SetActive(false);
@@ -195,4 +196,7 @@ public class DialogueManager : MonoBehaviour
     {
         DialogueBox.SetActive(false); //화면에서 없앰
     }
+
+
+    
 }
