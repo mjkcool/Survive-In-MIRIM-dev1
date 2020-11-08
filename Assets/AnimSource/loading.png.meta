@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: 4586d0aba6994c648b98758b19b01d4a
+guid: 8e736e63c93eb284391f0bcc155a9928
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4410309104664922429
-    second: starAtle_0
+      213: -2914503216214332612
+    second: loading_0
   - first:
-      213: 8507044798114389508
-    second: starAtle_1
+      213: -3243969905789220278
+    second: loading_1
   - first:
-      213: 5336448673534789089
-    second: starAtle_2
+      213: -2240947139059371774
+    second: loading_2
   - first:
-      213: -2032309233838961587
-    second: starAtle_3
+      213: -9038400482918282348
+    second: loading_3
   - first:
-      213: -3869386104432608353
-    second: starAtle_4
+      213: 3541541065571182360
+    second: loading_4
   - first:
-      213: 4329672506280131301
-    second: starAtle_5
+      213: -6469537607060608100
+    second: loading_5
   - first:
-      213: -7086501276257178440
-    second: starAtle_6
+      213: -6746097347225962745
+    second: loading_6
   - first:
-      213: -2114943302816030514
-    second: starAtle_7
+      213: -176354558837914207
+    second: loading_7
   - first:
-      213: -4730992089773460442
-    second: starAtle_8
+      213: 4675115675929687159
+    second: loading_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -113,18 +113,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -140,190 +128,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: starAtle_0
+      name: loading_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 720
-        width: 304
-        height: 286
+        x: 26
+        y: 24
+        width: 150
+        height: 152
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c6b6c27c3f6bc2c0800000000000000
-      internalID: -4410309104664922429
+      spriteID: c3bafcc34ca9d87d0800000000000000
+      internalID: -2914503216214332612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: starAtle_1
+      name: loading_1
       rect:
         serializedVersion: 2
-        x: 347
-        y: 711
-        width: 306
-        height: 302
+        x: 224
+        y: 24
+        width: 152
+        height: 152
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40e51ffeb281f0670800000000000000
-      internalID: 8507044798114389508
+      spriteID: a4a4067de8a1bf2d0800000000000000
+      internalID: -3243969905789220278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: starAtle_2
+      name: loading_2
       rect:
         serializedVersion: 2
-        x: 695
-        y: 713
-        width: 254
-        height: 289
+        x: 424
+        y: 24
+        width: 152
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e5452c7bcfde0a40800000000000000
-      internalID: 5336448673534789089
+      spriteID: 20130f7337e86e0e0800000000000000
+      internalID: -2240947139059371774
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: starAtle_3
+      name: loading_3
       rect:
         serializedVersion: 2
-        x: 55
-        y: 377
-        width: 209
-        height: 294
+        x: 624
+        y: 24
+        width: 152
+        height: 152
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4c484bf489cbc3e0800000000000000
-      internalID: -2032309233838961587
+      spriteID: 49bcfe5f5a6219280800000000000000
+      internalID: -9038400482918282348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: starAtle_4
+      name: loading_4
       rect:
         serializedVersion: 2
-        x: 443
-        y: 379
-        width: 90
-        height: 294
+        x: 824
+        y: 24
+        width: 150
+        height: 152
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9b3672c6dd2d4ac0800000000000000
-      internalID: -3869386104432608353
+      spriteID: 81724d2d5d4162130800000000000000
+      internalID: 3541541065571182360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: starAtle_5
+      name: loading_5
       rect:
         serializedVersion: 2
-        x: 779
-        y: 379
-        width: 90
-        height: 294
+        x: 1024
+        y: 24
+        width: 152
+        height: 152
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ea3a927436161c30800000000000000
-      internalID: 4329672506280131301
+      spriteID: c9b2f1ec2d59736a0800000000000000
+      internalID: -6469537607060608100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: starAtle_6
+      name: loading_6
       rect:
         serializedVersion: 2
-        x: 55
-        y: 41
-        width: 209
-        height: 294
+        x: 1224
+        y: 26
+        width: 152
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bca65892a0b7ad90800000000000000
-      internalID: -7086501276257178440
+      spriteID: 707346e743c0162a0800000000000000
+      internalID: -6746097347225962745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: starAtle_7
+      name: loading_7
       rect:
         serializedVersion: 2
-        x: 359
-        y: 41
-        width: 254
-        height: 289
+        x: 1424
+        y: 24
+        width: 152
+        height: 152
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec02f83854636a2e0800000000000000
-      internalID: -2114943302816030514
+      spriteID: 1a502fd86767d8df0800000000000000
+      internalID: -176354558837914207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: starAtle_8
+      name: loading_8
       rect:
         serializedVersion: 2
-        x: 683
-        y: 39
-        width: 306
-        height: 302
+        x: 1626
+        y: 24
+        width: 150
+        height: 152
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 624bedd92c3285eb0800000000000000
-      internalID: -4730992089773460442
+      spriteID: 77436abffe851e040800000000000000
+      internalID: 4675115675929687159
       vertices: []
       indices: 
       edges: []

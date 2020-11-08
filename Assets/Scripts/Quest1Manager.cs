@@ -20,6 +20,11 @@ public class Quest1Manager : MonoBehaviour
     public InputField InputF_2;
     public GameObject Input_2;
 
+    //anim
+    public GameObject starAnimation;
+    public GameObject LoadingAnimation;
+    public GameObject LoadingGround;
+
     private int dialogtotalcnt;
     public Queue<QuestBase.Info> QuestInfo;
 
@@ -117,15 +122,28 @@ public class Quest1Manager : MonoBehaviour
                 }
                 else if (isCorrect(InputF_2.text.ToString()))
                 {
+                    QuestDialogBox.SetActive(false);
                     //정답의경우
+                    LoadingAnimation.SetActive(true);
+                    LoadingGround.SetActive(true);
+                    Destroy(LoadingAnimation, 7);
+                    Destroy(LoadingGround, 7);
+                    QuestDialogBox.SetActive(true);
+
                     QuestBase.Info info = QuestInfo.Dequeue();
                     dialogueName.text = info.myName;
                     dialogueText.text = info.myText;
-                    InputF_2.text = null;
                     Input_2.SetActive(false);
                 }
                 else //오답 입력시
                 {
+                    QuestDialogBox.SetActive(false);
+                    LoadingAnimation.SetActive(true);
+                    LoadingGround.SetActive(true);
+                    Destroy(LoadingAnimation, 7);
+                    Destroy(LoadingGround, 7);
+                    QuestDialogBox.SetActive(true);
+
                     Input_2.SetActive(false);
                     dialogueName.text = null;
                     dialogueText.text = "잘못되었습니다";
@@ -199,14 +217,21 @@ public class Quest1Manager : MonoBehaviour
         return true;
     }
 
-    public GameObject star;
 
     public void EndofQuest()
     {
         Destroy(transform.Find("othertexts"));
+
+
         QuestDialogBox.SetActive(false);//화면에서 없앰
         DialogueManager.instance.Q1completed = true;
         (DialogueManager.instance.DialogueBox).SetActive(true);
         DialogueManager.instance.DequeueDialogue();
     }
+
+    public void starAnim()
+    {
+        starAnimation.SetActive(false);
+    }
+
 }
