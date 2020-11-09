@@ -92,7 +92,7 @@ public class Quest4Manager : MonoBehaviour
                     InputF_1.text = null;
                     Input_1.SetActive(false);
                     dialogueName.text = null;
-                    dialogueText.text = "그곳이 아닌 것 같아!";
+                    dialogueText.text = "여기는 아닌가봐";
                     flag = false;
                 }
             }
@@ -130,7 +130,7 @@ public class Quest4Manager : MonoBehaviour
                     {
                         Input_2.SetActive(false);
                         dialogueName.text = null;
-                        dialogueText.text = "잘못되었습니다";
+                        dialogueText.text = "이게 아냐! 이대로면 여전히 종이 일찍 울려버릴거야";
                         flag = false;
                     }
                 }

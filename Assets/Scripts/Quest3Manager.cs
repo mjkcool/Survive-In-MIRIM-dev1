@@ -91,7 +91,7 @@ public class Quest3Manager : MonoBehaviour
                 {
                     Input_1.SetActive(false);
                     dialogueName.text = null;
-                    dialogueText.text = "그곳이 아닌 것 같아!";
+                    dialogueText.text = "음... 이곳이 아닌 것 같아";
                     flag = false;
                 }
             }
@@ -129,7 +129,7 @@ public class Quest3Manager : MonoBehaviour
                     {
                         Input_2.SetActive(false);
                         dialogueName.text = null;
-                        dialogueText.text = "잘못되었습니다";
+                        dialogueText.text = "문제가 해결되지 않았어\n다시 생각해보자!";
                         flag = false;
                     }
                 }

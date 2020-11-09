@@ -99,7 +99,7 @@ public class Quest1Manager : MonoBehaviour
                 {
                     Input_1.SetActive(false);
                     dialogueName.text = null;
-                    dialogueText.text = "그곳이 아닌 것 같아!";
+                    dialogueText.text = "이곳은 아닌 것 같아";
                     flag = false;
                 }
             }
@@ -122,7 +122,6 @@ public class Quest1Manager : MonoBehaviour
                 }
                 else
                 {
-
                     QuestManager.instance.startLoading(isCorrect(InputF_2.text.ToString()));
 
                     if (isCorrect(InputF_2.text.ToString()))
@@ -138,7 +137,7 @@ public class Quest1Manager : MonoBehaviour
                     {
                         Input_2.SetActive(false);
                         dialogueName.text = null;
-                        dialogueText.text = "잘못되었습니다";
+                        dialogueText.text = "잘못된 문장인가봐\n제대로 작동하지 않아";
                         flag = false;
                     }
                 }

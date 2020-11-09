@@ -93,7 +93,7 @@ public class Quest5Manager : MonoBehaviour
                 {
                     Input_1.SetActive(false);
                     dialogueName.text = null;
-                    dialogueText.text = "그곳이 아닌 것 같아!";
+                    dialogueText.text = "이곳이 아니야!";
                     flag = false;
                 }
             }
@@ -131,7 +131,7 @@ public class Quest5Manager : MonoBehaviour
                     {
                         Input_2.SetActive(false);
                         dialogueName.text = null;
-                        dialogueText.text = "잘못되었습니다";
+                        dialogueText.text = "여전히 안보이네, 서둘러야 해!";
                         flag = false;
                     }
                 }

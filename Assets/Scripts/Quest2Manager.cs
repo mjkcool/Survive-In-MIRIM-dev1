@@ -96,7 +96,7 @@ public class Quest2Manager : MonoBehaviour
                     InputF_1.text = null;
                     Input_1.SetActive(false);
                     dialogueName.text = null;
-                    dialogueText.text = "그곳이 아닌 것 같아!";
+                    dialogueText.text = "이곳이 아닌 것 같아!";
                     flag = false;
                 }
             }
@@ -135,7 +135,7 @@ public class Quest2Manager : MonoBehaviour
                     {
                         Input_2.SetActive(false);
                         dialogueName.text = null;
-                        dialogueText.text = "잘못되었습니다";
+                        dialogueText.text = "오류가 그대로인걸!";
                         flag = false;
                     }
                 }
