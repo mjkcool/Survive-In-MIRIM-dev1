@@ -26,7 +26,7 @@ MonoBehaviour:
   - myName: "\uC601\uC7AC"
     portrait: {fileID: 21300000, guid: e6e4ea0eef60551418b2d066bdec0e48, type: 3}
     myText: "\uB098\uB3C4 \uBC24\uC0D8. \uB098 \uC790\uC2E0\uC758 \uACE0\uB1CC\uD558\uB294
-      \uBAA8\uC2B5\uC744 \uC5F0\uAE30 \uC5F0\uC2B5\uD558\uB290\uB77C"
+      \uBAA8\uC2B5\uC744 \uC5F0\uC2B5\uD558\uB290\uB77C"
   - myName: 
     portrait: {fileID: 21300000, guid: daa4008f29bca314294d184041ac4b41, type: 3}
     myText: "\uC5B4\uB514\uC120\uAC00 \uC790\uC2E0\uAC10\uC774 \uC19F\uAD6C\uCE5C\uB2E4.

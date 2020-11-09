@@ -120,9 +120,7 @@ public class Quest2Manager : MonoBehaviour
                 }
                 else
                 {
-                    QuestDialogBox.SetActive(false);
                     QuestManager.instance.startLoading(isCorrect(InputF_2.text.ToString()));
-                    QuestDialogBox.SetActive(true);
 
                     if (isCorrect(InputF_2.text.ToString()))
                     {
@@ -197,7 +195,6 @@ public class Quest2Manager : MonoBehaviour
             }
             else
             {
-                Debug.Log("안돼요 1");
                 return false;
             }
         }

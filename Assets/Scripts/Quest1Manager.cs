@@ -180,7 +180,6 @@ public class Quest1Manager : MonoBehaviour
         //전체 문자열이 다르면 오답
         if (!answer.Replace(" ", "").Equals(Correct_answer.Replace(" ", "")))
         {
-            Debug.Log("안돼요 3");
             return false;
         }
 
@@ -189,7 +188,6 @@ public class Quest1Manager : MonoBehaviour
         //필수 단어들이 들어가 있는지
         if (answer.IndexOf(raw_list[1]+" ") == -1 || answer.IndexOf(raw_list[2]) == -1 || answer.IndexOf(raw_list[4]) == -1)
         {
-            Debug.Log("안돼요 2");
             return false;
         }
 
@@ -204,7 +202,6 @@ public class Quest1Manager : MonoBehaviour
             }
             else
             {
-                Debug.Log("안돼요 1");
                 return false;
             }
         }

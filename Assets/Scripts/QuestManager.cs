@@ -19,15 +19,14 @@ public class QuestManager : MonoBehaviour
 
     public void DelaySystem(int MS) //시간 지연 함수
     {
-        /*DateTime dtAfter = DateTime.Now;
+        DateTime dtAfter = DateTime.Now;
         TimeSpan dtDuration = new TimeSpan(0, 0, 0, 0, MS);
         DateTime dtThis = dtAfter.Add(dtDuration);
 
         while (dtThis >= dtAfter)
         {
             dtAfter = DateTime.Now;
-        }*/
-        //딜레이함수가 작동을 안함
+        }
     }
 
     //anim
@@ -35,7 +34,8 @@ public class QuestManager : MonoBehaviour
     public GameObject starAnimation;
     public GameObject LoadingAnimation;
     public GameObject LoadingGround;
-    public GameObject success, failure;
+    public GameObject success;
+    public GameObject failure;
 
     private bool correct;
 
@@ -45,20 +45,20 @@ public class QuestManager : MonoBehaviour
         this.correct = correct;
         LoadingGround.SetActive(true);
         LoadingAnimation.SetActive(true);
-        Invoke("showResult", 4f);
-        QuestObj.SetActive(true);
+        Invoke("loading2", 3f);
+        Debug.Log("iscorrect");
     }
-    private void showResult()
+    private void loading2()
     {
         LoadingAnimation.SetActive(false);
         if (correct) success.SetActive(true);
         else failure.SetActive(true);
-        
-        Invoke("backToDialog", 2f);
+        Invoke("loading3", 2f);
     }
-    private void backToDialog()
+    private void loading3()
     {
         success.SetActive(false); failure.SetActive(false);
         LoadingGround.SetActive(false);
+        QuestObj.SetActive(true);
     }
 }

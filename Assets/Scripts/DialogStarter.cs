@@ -17,7 +17,7 @@ public class DialogStarter : MonoBehaviour
         //rt.sizeDelta = new Vector2(Screen.width, /*rt.sizeDelta.y*/Screen.height);
         //Screen.SetResolution(Screen.width, Screen.width * 16/9, true);
         //Screen.SetResolution(int width, int height, bool fullscreen);
-
+        
         Invoke("TriggerDialogue", 5f);
     }
 

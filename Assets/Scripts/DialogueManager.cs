@@ -82,97 +82,102 @@ public class DialogueManager : MonoBehaviour
 
     public void DequeueDialogue()
     {
-        if (dialogueInfo.Count == 0) //챕터 1 종료
+        lock (dialogueInfo)
         {
-            EndofDialogue();
-        }
-        else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q1completed)) //퀘스트 1 시작
-        {
-            passed_dialognum += 24;
-            DialogueBox.SetActive(false);
-            DialogBtn.questnum = 1;
-            questStarter.questnum = 1;
-            questStarter.start();
-        }
-        else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q2completed)) //퀘스트 2 시작
-        {
-            passed_dialognum += 25;
-            DialogueBox.SetActive(false);
-            DialogBtn.questnum = 2;
-            questStarter.questnum = 2;
-            questStarter.start();
-        }
-        else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 3 시작
-        {
-            passed_dialognum += 21;
-            DialogueBox.SetActive(false);
-            DialogBtn.questnum = 3;
-            questStarter.questnum = 3;
-            questStarter.start();
-        }else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 4 시작
-        {
-            passed_dialognum += 26;
-            DialogueBox.SetActive(false);
-            DialogBtn.questnum = 4;
-            questStarter.questnum = 4;
-            questStarter.start();
-        }
-        else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 5 시작
-        {
-            DialogueBox.SetActive(false);
-            DialogBtn.questnum = 5;
-            questStarter.questnum = 5;
-            questStarter.start();
+            if (dialogueInfo.Count == 0) //챕터 1 종료
+            {
+                EndofDialogue();
+            }
+            else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q1completed)) //퀘스트 1 시작
+            {
+                passed_dialognum += 24;
+                DialogueBox.SetActive(false);
+                DialogBtn.questnum = 1;
+                questStarter.questnum = 1;
+                questStarter.start();
+            }
+            else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q2completed)) //퀘스트 2 시작
+            {
+                passed_dialognum += 25;
+                DialogueBox.SetActive(false);
+                DialogBtn.questnum = 2;
+                questStarter.questnum = 2;
+                questStarter.start();
+            }
+            else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 3 시작
+            {
+                passed_dialognum += 21;
+                DialogueBox.SetActive(false);
+                DialogBtn.questnum = 3;
+                questStarter.questnum = 3;
+                questStarter.start();
+            }
+            else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 4 시작
+            {
+                passed_dialognum += 26;
+                DialogueBox.SetActive(false);
+                DialogBtn.questnum = 4;
+                questStarter.questnum = 4;
+                questStarter.start();
+            }
+            else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 5 시작
+            {
+                DialogueBox.SetActive(false);
+                DialogBtn.questnum = 5;
+                questStarter.questnum = 5;
+                questStarter.start();
+            }
+
+            if (isCurrentlyTyping == true)
+            {
+                CompleteText();
+                StopAllCoroutines();
+                isCurrentlyTyping = false;
+                return;
+            }
+
+            DialogueBase.Info info = dialogueInfo.Dequeue();
+            completeText = info.myText;
+
+            dialogueName.text = info.myName;
+            dialogueText.text = info.myText;
+            dialoguePortrait.sprite = info.portrait;
+
+            ////////오디오 설정
+            if (dialogueInfo.Count == dialogtotalcnt - classSound_dialog)
+            {
+                GetComponent<AudioSource>().clip = classSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (dialogueInfo.Count < dialogtotalcnt - classSoundEnd_dialog)
+            {
+                GetComponent<AudioSource>().Stop();
+            }
+
+            if (dialogueInfo.Count == dialogtotalcnt - firstExampaper_dialog)
+            {
+                GetComponent<AudioSource>().clip = paperSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (dialogueInfo.Count == dialogtotalcnt - firstExampaperEnd_dialog)
+            {
+                GetComponent<AudioSource>().Stop();
+            }
+
+            if (dialogueInfo.Count == dialogtotalcnt - schoolRing_dialog)
+            {
+                GetComponent<AudioSource>().clip = schoolRingSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (dialogueInfo.Count == dialogtotalcnt - schoolRingEnd_dialog)
+            {
+                GetComponent<AudioSource>().Stop();
+            }
+
+            dialogueText.text = "";
+            StartCoroutine(TypeText(info));
         }
 
-        if (isCurrentlyTyping == true)
-        {
-            CompleteText();
-            StopAllCoroutines();
-            isCurrentlyTyping = false;
-            return;
-        }
-
-        DialogueBase.Info info = dialogueInfo.Dequeue();
-        completeText = info.myText;
-
-        dialogueName.text = info.myName;
-        dialogueText.text = info.myText;
-        dialoguePortrait.sprite = info.portrait;
-
-        ////////오디오 설정
-        if (dialogueInfo.Count == dialogtotalcnt - classSound_dialog)
-        {
-            GetComponent<AudioSource>().clip = classSound;
-            GetComponent<AudioSource>().Play();
-        }
-        else if (dialogueInfo.Count < dialogtotalcnt - classSoundEnd_dialog)
-        {
-            GetComponent<AudioSource>().Stop();
-        }
-
-        if (dialogueInfo.Count == dialogtotalcnt - firstExampaper_dialog)
-        {
-            GetComponent<AudioSource>().clip = paperSound;
-            GetComponent<AudioSource>().Play();
-        }
-        else if (dialogueInfo.Count == dialogtotalcnt - firstExampaperEnd_dialog)
-        {
-            GetComponent<AudioSource>().Stop();
-        }
-
-        if (dialogueInfo.Count == dialogtotalcnt - schoolRing_dialog)
-        {
-            GetComponent<AudioSource>().clip = schoolRingSound;
-            GetComponent<AudioSource>().Play();
-        }
-        else if (dialogueInfo.Count == dialogtotalcnt - schoolRingEnd_dialog)
-        {
-            GetComponent<AudioSource>().Stop();
-        }
-
-        dialogueText.text = "";
-        StartCoroutine(TypeText(info));
     }
 
     IEnumerator TypeText(DialogueBase.Info info)
