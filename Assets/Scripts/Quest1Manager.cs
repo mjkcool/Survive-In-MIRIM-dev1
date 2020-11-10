@@ -14,10 +14,10 @@ public class Quest1Manager : MonoBehaviour
     public Image Portrait;
     public Sprite portraitImage;
     //Q1-1
-    public InputField InputF_1;
+    public TMP_InputField InputF_1;
     public GameObject Input_1;
     //Q1-2
-    public InputField InputF_2;
+    public TMP_InputField InputF_2;
     public GameObject Input_2;
 
     //anim

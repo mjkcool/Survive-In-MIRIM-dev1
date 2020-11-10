@@ -20,6 +20,8 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public static string UserName = "User";
+
     public AudioClip classSound;
     public AudioClip paperSound;
     public AudioClip schoolRingSound;
@@ -77,6 +79,7 @@ public class DialogueManager : MonoBehaviour
 
         passed_dialognum = 13; //다음 퀘스트 시작 지점 지정
 
+        
         DequeueDialogue();
     }
 
@@ -139,8 +142,11 @@ public class DialogueManager : MonoBehaviour
             DialogueBase.Info info = dialogueInfo.Dequeue();
             completeText = info.myText;
 
-            dialogueName.text = info.myName;
-            dialogueText.text = info.myText;
+            //유저 이름
+            if(info.myName.Equals("유저")) dialogueName.text = UserName;
+            else dialogueName.text = info.myName;
+
+            dialogueText.text = info.myText.Replace("유저", UserName);
             dialoguePortrait.sprite = info.portrait;
 
             ////////오디오 설정

@@ -216,9 +216,9 @@ MonoBehaviour:
   dialogueText: {fileID: 1321134422}
   Portrait: {fileID: 747945839}
   portraitImage: {fileID: 21300000, guid: 179cd81213411f247abd4be05a7eb75e, type: 3}
-  InputF_1: {fileID: 629738061}
+  InputF_1: {fileID: 0}
   Input_1: {fileID: 629738059}
-  InputF_2: {fileID: 1688686777}
+  InputF_2: {fileID: 0}
   Input_2: {fileID: 1688686775}
   starAnimation: {fileID: 329042248}
   LoadingAnimation: {fileID: 2019720966}
@@ -375,7 +375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -274.1, y: 198.2}
+  m_AnchoredPosition: {x: -274.1, y: 198.20001}
   m_SizeDelta: {x: 500, y: 118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &199892488
@@ -776,7 +776,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -274.1, y: 198.2}
+  m_AnchoredPosition: {x: -274.1, y: 198.19998}
   m_SizeDelta: {x: 470.00006, y: 100.00238}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &304059493
@@ -928,9 +928,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 93.77629
-  orthographic: 0
-  orthographic size: 5
+  field of view: 103.41777
+  orthographic: 1
+  orthographic size: 1082.8018
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1276,7 +1276,8 @@ MonoBehaviour:
   m_text: "\uCEF4\uD30C\uC77C \uC911..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a6641be55c45d24694bb5350978699d, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -5813638769357572743, guid: 1a6641be55c45d24694bb5350978699d,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1384,9 +1385,9 @@ MonoBehaviour:
   dialogueText: {fileID: 1321134422}
   Portrait: {fileID: 747945839}
   portraitImage: {fileID: 21300000, guid: d42427cd0b5b5d64ca0e4d54fa565834, type: 3}
-  InputF_1: {fileID: 629738061}
+  InputF_1: {fileID: 0}
   Input_1: {fileID: 629738059}
-  InputF_2: {fileID: 1688686777}
+  InputF_2: {fileID: 0}
   Input_2: {fileID: 1688686775}
 --- !u!4 &489526431
 Transform:
@@ -2014,16 +2015,16 @@ GameObject:
   - component: {fileID: 671992868}
   - component: {fileID: 671992871}
   - component: {fileID: 671992869}
-  - component: {fileID: 671992870}
   - component: {fileID: 671992873}
   - component: {fileID: 671992872}
+  - component: {fileID: 671992870}
   m_Layer: 5
   m_Name: ChapterIndex
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &671992868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2064,7 +2065,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 671992867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -2075,13 +2076,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5dd3126f33f0dc440911fbfc5c6e82bb, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_Sprite: {fileID: 21300000, guid: 5dd3126f33f0dc440911fbfc5c6e82bb, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &671992871
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3066,9 +3070,9 @@ MonoBehaviour:
   dialogueText: {fileID: 1321134422}
   Portrait: {fileID: 747945839}
   portraitImage: {fileID: 21300000, guid: 54b4334097c6541429af43ab0117cf61, type: 3}
-  InputF_1: {fileID: 629738061}
+  InputF_1: {fileID: 0}
   Input_1: {fileID: 629738059}
-  InputF_2: {fileID: 1688686777}
+  InputF_2: {fileID: 0}
   Input_2: {fileID: 1688686775}
 --- !u!1 &1250812445
 GameObject:
@@ -3222,9 +3226,9 @@ MonoBehaviour:
   dialogueText: {fileID: 1321134422}
   Portrait: {fileID: 747945839}
   portraitImage: {fileID: 21300000, guid: 8b3439ee2fb8f2a4cbd5a5b382d7c657, type: 3}
-  InputF_1: {fileID: 629738061}
+  InputF_1: {fileID: 0}
   Input_1: {fileID: 629738059}
-  InputF_2: {fileID: 1688686777}
+  InputF_2: {fileID: 0}
   Input_2: {fileID: 1688686775}
 --- !u!1 &1294690173
 GameObject:
@@ -3274,9 +3278,9 @@ MonoBehaviour:
   dialogueText: {fileID: 1321134422}
   Portrait: {fileID: 747945839}
   portraitImage: {fileID: 21300000, guid: 54b4334097c6541429af43ab0117cf61, type: 3}
-  InputF_1: {fileID: 629738061}
+  InputF_1: {fileID: 0}
   Input_1: {fileID: 629738059}
-  InputF_2: {fileID: 1688686777}
+  InputF_2: {fileID: 0}
   Input_2: {fileID: 1688686775}
 --- !u!1 &1310380464
 GameObject:
@@ -3989,6 +3993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba4a5f8099b0ec4f8cf8b3dadc3bad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UserName: 
   classSound: {fileID: 8300000, guid: 6ced86bc514a2444cb3dec0d5773b8ec, type: 3}
   paperSound: {fileID: 8300000, guid: 27c6aa702cad8514eb4867aec3c4324f, type: 3}
   schoolRingSound: {fileID: 8300000, guid: 3ab8884a7b8242948bcb2b34f41980b5, type: 3}
@@ -5064,7 +5069,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -274.1, y: 198.2}
+  m_AnchoredPosition: {x: -274.1, y: 198.19998}
   m_SizeDelta: {x: 470, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1730692650
@@ -6260,7 +6265,7 @@ Canvas:
   m_GameObject: {fileID: 2090703641}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 328323250}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
