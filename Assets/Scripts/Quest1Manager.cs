@@ -20,11 +20,6 @@ public class Quest1Manager : MonoBehaviour
     public TMP_InputField InputF_2;
     public GameObject Input_2;
 
-    //anim
-    public GameObject starAnimation;
-    public GameObject LoadingAnimation;
-    public GameObject LoadingGround;
-
     private int dialogtotalcnt;
     public Queue<QuestBase.Info> QuestInfo;
 

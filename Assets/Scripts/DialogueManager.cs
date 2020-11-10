@@ -139,6 +139,8 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
 
+            DialogueBox.SetActive(true);
+
             DialogueBase.Info info = dialogueInfo.Dequeue();
             completeText = info.myText;
 
@@ -202,12 +204,15 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = completeText;
     }
 
-
-    public void EndofDialogue()
+    private void EndofDialogue()
     {
         DialogueBox.SetActive(false); //화면에서 없앰
     }
 
-
+    //대사 2초 자동 뜸들이기 함수
+    private void delayDialog()
+    {
+        Invoke("DequeueDialogue", 2f);
+    }
     
 }
