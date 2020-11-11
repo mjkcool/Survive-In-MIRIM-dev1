@@ -30,7 +30,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
     public Image dialoguePortrait;
-    public float delay = 2f;
+    public Image backgroundPortrait;
+    private bool delay = false;
     public QuestStarter questStarter;
     public DialogueButton DialogBtn;
 
@@ -46,6 +47,7 @@ public class DialogueManager : MonoBehaviour
     public int firstExampaperEnd_dialog;
     public int schoolRing_dialog;
     public int schoolRingEnd_dialog;
+    //
 
     private int dialogtotalcnt;
     public bool Q1completed = false, Q2completed = false, Q3completed = false, Q4completed = false, Q5completed=false;
@@ -64,8 +66,10 @@ public class DialogueManager : MonoBehaviour
         DialogueBox.SetActive(true); //화면에 띄움
         dialogueInfo.Clear();
 
+        int i = 0;
         foreach (DialogueBase.Info info in db.dialogueInfo)
         {
+            info.id = i++;
             dialogueInfo.Enqueue(info);
         }
 
@@ -78,13 +82,18 @@ public class DialogueManager : MonoBehaviour
         schoolRingEnd_dialog = 15;
 
         passed_dialognum = 13; //다음 퀘스트 시작 지점 지정
-
         
         DequeueDialogue();
     }
 
     public void DequeueDialogue()
     {
+        if (delay)
+        {
+            delayDialog();
+            return;
+        }
+
         lock (dialogueInfo)
         {
             if (dialogueInfo.Count == 0) //챕터 1 종료
@@ -139,6 +148,7 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
 
+
             DialogueBox.SetActive(true);
 
             DialogueBase.Info info = dialogueInfo.Dequeue();
@@ -150,6 +160,17 @@ public class DialogueManager : MonoBehaviour
 
             dialogueText.text = info.myText.Replace("유저", UserName);
             dialoguePortrait.sprite = info.portrait;
+            backgroundPortrait.sprite = info.background;
+
+            delay = false;
+            switch (info.id)
+            {
+                case 4: case 14: case 19: case 22: case 29: case 43: case 57: case 66: case 73: case 79: case 85:
+                    delay = true;
+                    break;
+                default: break;
+            }
+
 
             ////////오디오 설정
             if (dialogueInfo.Count == dialogtotalcnt - classSound_dialog)
@@ -181,6 +202,7 @@ public class DialogueManager : MonoBehaviour
             {
                 GetComponent<AudioSource>().Stop();
             }
+            //
 
             dialogueText.text = "";
             StartCoroutine(TypeText(info));
@@ -193,7 +215,7 @@ public class DialogueManager : MonoBehaviour
         isCurrentlyTyping = true;
         foreach (char c in info.myText.ToCharArray())
         {
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(2f);
             dialogueText.text += c;
         }
         isCurrentlyTyping = false;
@@ -212,6 +234,7 @@ public class DialogueManager : MonoBehaviour
     //대사 2초 자동 뜸들이기 함수
     private void delayDialog()
     {
+        DialogueBox.SetActive(false);
         Invoke("DequeueDialogue", 2f);
     }
     

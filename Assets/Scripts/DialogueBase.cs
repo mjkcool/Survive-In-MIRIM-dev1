@@ -8,6 +8,7 @@ public class DialogueBase : ScriptableObject
     [System.Serializable]
     public class Info
     {
+        public int id;
         public string myName;
         public Sprite portrait;
         public Sprite background;
