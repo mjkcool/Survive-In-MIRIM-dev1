@@ -31,10 +31,11 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Image dialoguePortrait;
     public Image backgroundPortrait;
-    private bool delay = false;
+    public float delay = 0.05f;
     public QuestStarter questStarter;
     public DialogueButton DialogBtn;
 
+    private bool isDelay;
     public bool isCurrentlyTyping;
     private string completeText;
 
@@ -82,17 +83,14 @@ public class DialogueManager : MonoBehaviour
         schoolRingEnd_dialog = 15;
 
         passed_dialognum = 13; //다음 퀘스트 시작 지점 지정
+
         
         DequeueDialogue();
     }
 
     public void DequeueDialogue()
     {
-        if (delay)
-        {
-            delayDialog();
-            return;
-        }
+        if (isDelay) delayDialog();
 
         lock (dialogueInfo)
         {
@@ -148,7 +146,6 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
 
-
             DialogueBox.SetActive(true);
 
             DialogueBase.Info info = dialogueInfo.Dequeue();
@@ -162,11 +159,11 @@ public class DialogueManager : MonoBehaviour
             dialoguePortrait.sprite = info.portrait;
             backgroundPortrait.sprite = info.background;
 
-            delay = false;
+            isDelay = false;
             switch (info.id)
             {
                 case 4: case 14: case 19: case 22: case 29: case 43: case 57: case 66: case 73: case 79: case 85:
-                    delay = true;
+                    isDelay = true;
                     break;
                 default: break;
             }
@@ -215,7 +212,7 @@ public class DialogueManager : MonoBehaviour
         isCurrentlyTyping = true;
         foreach (char c in info.myText.ToCharArray())
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(delay);
             dialogueText.text += c;
         }
         isCurrentlyTyping = false;
