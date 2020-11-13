@@ -20,24 +20,24 @@ MonoBehaviour:
     myText: "\uC624\uB298 \uC2DC\uD5D8 \uC798 \uBCFC \uC218 \uC788\uC744\uAE4C?"
   - id: 0
     myName: "\uAE40\uC601\uC7AC"
-    portrait: {fileID: 21300000, guid: 0eb3e30920e303540976c2182f56bdf1, type: 3}
+    portrait: {fileID: 21300000, guid: 3d810395bb1edaa43bfc4f56f54b14b6, type: 3}
     background: {fileID: 21300000, guid: 696b810e5663e054a83b6962e5fb7a7a, type: 3}
     myText: "\uC57C~ \uB108 \uB418\uAC8C \uC77C\uCC0D \uC654\uB124. \uACF5\uBD80
       \uB9CE\uC774 \uD588\uB0D0?"
   - id: 0
     myName: "\uC720\uC800"
-    portrait: {fileID: 21300000, guid: 57130e8e5074ce041ab743fb152aad4b, type: 3}
+    portrait: {fileID: 21300000, guid: 125c1e4578956d44cb092be0eb95fbe9, type: 3}
     background: {fileID: 21300000, guid: 696b810e5663e054a83b6962e5fb7a7a, type: 3}
     myText: "\uD588\uACA0\uB0D0? \uC5B4\uC81C \uACA8\uC6B0 \uBC24\uC0DC\uB2E4"
   - id: 0
     myName: "\uAE40\uC601\uC7AC"
-    portrait: {fileID: 21300000, guid: e6e4ea0eef60551418b2d066bdec0e48, type: 3}
+    portrait: {fileID: 21300000, guid: 342d69b336c93cc4e97d93a7a7ec922c, type: 3}
     background: {fileID: 21300000, guid: 696b810e5663e054a83b6962e5fb7a7a, type: 3}
     myText: "\uB098\uB3C4 \uBC24\uC0D8. \uB098 \uC790\uC2E0\uC758 \uACE0\uB1CC\uD558\uB294
       \uBAA8\uC2B5\uC744 \uC5F0\uC2B5\uD558\uB290\uB77C"
   - id: 5
     myName: 
-    portrait: {fileID: 21300000, guid: daa4008f29bca314294d184041ac4b41, type: 3}
+    portrait: {fileID: 21300000, guid: 8f5ec97e4d6678641b623fae09c54c3a, type: 3}
     background: {fileID: 21300000, guid: 85250fae35f03554aa217f49ee1d5c0b, type: 3}
     myText: "\uC5B4\uB514\uC120\uAC00 \uC790\uC2E0\uAC10\uC774 \uC19F\uAD6C\uCE5C\uB2E4.
       \n\uC120\uC0DD\uB2D8\uC774 \uB4E4\uC5B4\uC624\uC2DC\uACE0 \uC2DC\uD5D8\uC9C0\uAC00
@@ -60,13 +60,13 @@ MonoBehaviour:
     myText: 
   - id: 9
     myName: "\uC720\uC800"
-    portrait: {fileID: 21300000, guid: daa4008f29bca314294d184041ac4b41, type: 3}
+    portrait: {fileID: 21300000, guid: 9ccdd27805a617e43879c9a0da7351b9, type: 3}
     background: {fileID: 21300000, guid: 85250fae35f03554aa217f49ee1d5c0b, type: 3}
     myText: "\uC5B4? \uC120\uC0DD\uB2D8 \uC800\uD76C \uAD6D\uC5B4\uC778\uB370\uC694?
       \uC2DC\uD5D8\uC9C0\uC5D0 \uC218\uD559\uC774\uB77C\uACE0 \uC368\uC788\uC5B4\uC694"
   - id: 0
     myName: "\uBC15\uD5A5\uAE30 \uC120\uC0DD\uB2D8"
-    portrait: {fileID: 21300000, guid: daa4008f29bca314294d184041ac4b41, type: 3}
+    portrait: {fileID: 21300000, guid: 9ccdd27805a617e43879c9a0da7351b9, type: 3}
     background: {fileID: 21300000, guid: 85250fae35f03554aa217f49ee1d5c0b, type: 3}
     myText: "\uC4F8\uB370\uC5C6\uB294 \uC18C\uB9AC\uB9D0\uACE0 \uAC01\uC790 \uC2DC\uD5D8\uC9C0\uB9CC
       \uBCF4\uB3C4\uB85D!"
@@ -107,7 +107,7 @@ MonoBehaviour:
     myText: "(\uC2DC\uACC4\uC774\uBBF8\uC9C0, \uC885\uC18C\uB9AC)"
   - id: 0
     myName: "\uBC15\uD5A5\uAE30 \uC120\uC0DD\uB2D8"
-    portrait: {fileID: 21300000, guid: 35a2145c4d8920341931903d89bd932f, type: 3}
+    portrait: {fileID: 21300000, guid: 9ccdd27805a617e43879c9a0da7351b9, type: 3}
     background: {fileID: 21300000, guid: 85250fae35f03554aa217f49ee1d5c0b, type: 3}
     myText: "\uB3D9\uC791 \uADF8\uB9CC. \uB2E4\uB4E4 \uD39C \uB0B4\uB824\uB194. \uB4A4\uC5D0\uC11C
       \uBD80\uD130 \uAC77\uB3C4\uB85D."
@@ -129,7 +129,7 @@ MonoBehaviour:
     myText: "\uC57C \uC774\uC81C \uCCAB\uB0A0 \uB05D\uB0AC\uB124"
   - id: 0
     myName: "\uC190\uC131\uB355"
-    portrait: {fileID: 21300000, guid: 35a2145c4d8920341931903d89bd932f, type: 3}
+    portrait: {fileID: 21300000, guid: 58851abaf61238c4e82289e4f82285db, type: 3}
     background: {fileID: 21300000, guid: b49f293589f002548bea9514d8316b35, type: 3}
     myText: "\uC624\uB298 \uC2DC\uD5D8 \uAC1C\uC5B4\uB824\uC6E0\uC9C0 \uC54A\uB0D0?
       \uC544\uB2C8 \uC790\uBC14 \uC11C\uC220\uD615 3\uBC88 \uBB50\uC57C?"

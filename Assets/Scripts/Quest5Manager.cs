@@ -202,6 +202,7 @@ public class Quest5Manager : MonoBehaviour
 
     private void EndofQuest()
     {
+        InputF_2.text = null;
         QuestDialogBox.SetActive(false);//화면에서 없앰
         DialogueManager.instance.Q5completed = true;
         (DialogueManager.instance.DialogueBox).SetActive(true);

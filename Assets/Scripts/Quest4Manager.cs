@@ -199,6 +199,7 @@ public class Quest4Manager : MonoBehaviour
 
     private void EndofQuest()
     {
+        InputF_2.text = null;
         QuestDialogBox.SetActive(false);//화면에서 없앰
         DialogueManager.instance.Q4completed = true;
         (DialogueManager.instance.DialogueBox).SetActive(true);

@@ -136,7 +136,6 @@ public class Quest1Manager : MonoBehaviour
                         flag = false;
                     }
                 }
-                
             }
         }
         else if (QuestInfo.Count == 0) //Quest 다이얼로그 끝나면
@@ -206,6 +205,7 @@ public class Quest1Manager : MonoBehaviour
 
     private void EndofQuest()
     {
+        InputF_2.text = null;
         Destroy(transform.Find("othertexts"));
         QuestDialogBox.SetActive(false);//화면에서 없앰
         DialogueManager.instance.Q1completed = true;

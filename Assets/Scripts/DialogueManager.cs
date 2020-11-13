@@ -21,10 +21,16 @@ public class DialogueManager : MonoBehaviour
     }
 
     public static string UserName = "User";
-
+    public static int LoadId = 0;
+    public AudioClip doorSound;
+    public AudioClip pencilSound;
+    public AudioClip computerpenSound;
     public AudioClip classSound;
     public AudioClip paperSound;
     public AudioClip schoolRingSound;
+    public AudioClip examRingSound;
+    public AudioClip minuteSound;
+    public AudioClip messengerSound;
 
     public GameObject DialogueBox;
     public TextMeshProUGUI dialogueName;
@@ -35,7 +41,7 @@ public class DialogueManager : MonoBehaviour
     public QuestStarter questStarter;
     public DialogueButton DialogBtn;
 
-    private bool isDelay;
+    //private bool isDelay = false;
     public bool isCurrentlyTyping;
     private string completeText;
 
@@ -67,6 +73,7 @@ public class DialogueManager : MonoBehaviour
         DialogueBox.SetActive(true); //화면에 띄움
         dialogueInfo.Clear();
 
+        
         int i = 0;
         foreach (DialogueBase.Info info in db.dialogueInfo)
         {
@@ -90,7 +97,8 @@ public class DialogueManager : MonoBehaviour
 
     public void DequeueDialogue()
     {
-        if (isDelay) delayDialog();
+        DialogueBox.SetActive(true);
+        int info_number;
 
         lock (dialogueInfo)
         {
@@ -146,7 +154,7 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
 
-            DialogueBox.SetActive(true);
+            
 
             DialogueBase.Info info = dialogueInfo.Dequeue();
             completeText = info.myText;
@@ -159,52 +167,98 @@ public class DialogueManager : MonoBehaviour
             dialoguePortrait.sprite = info.portrait;
             backgroundPortrait.sprite = info.background;
 
-            isDelay = false;
-            switch (info.id)
-            {
-                case 4: case 14: case 19: case 22: case 29: case 43: case 57: case 66: case 73: case 79: case 85:
-                    isDelay = true;
-                    break;
-                default: break;
-            }
-
+            info_number = info.id;
 
             ////////오디오 설정
-            if (dialogueInfo.Count == dialogtotalcnt - classSound_dialog)
-            {
-                GetComponent<AudioSource>().clip = classSound;
-                GetComponent<AudioSource>().Play();
-            }
-            else if (dialogueInfo.Count < dialogtotalcnt - classSoundEnd_dialog)
-            {
-                GetComponent<AudioSource>().Stop();
-            }
-
-            if (dialogueInfo.Count == dialogtotalcnt - firstExampaper_dialog)
-            {
-                GetComponent<AudioSource>().clip = paperSound;
-                GetComponent<AudioSource>().Play();
-            }
-            else if (dialogueInfo.Count == dialogtotalcnt - firstExampaperEnd_dialog)
-            {
-                GetComponent<AudioSource>().Stop();
-            }
-
-            if (dialogueInfo.Count == dialogtotalcnt - schoolRing_dialog)
+            if (info_number == 0)
             {
                 GetComponent<AudioSource>().clip = schoolRingSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (dialogueInfo.Count == dialogtotalcnt - schoolRingEnd_dialog)
+            else if (info_number > 7) { GetComponent<AudioSource>().Stop(); }
+
+            if (info_number == 7)
+            {
+                GetComponent<AudioSource>().clip = paperSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (info_number > 7) { GetComponent<AudioSource>().Stop(); }
+
+            if (info_number == 14)
+            {
+                GetComponent<AudioSource>().clip = pencilSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (info_number > 14)
             {
                 GetComponent<AudioSource>().Stop();
             }
-            //
+            if (info_number == 15)
+            {
+                GetComponent<AudioSource>().clip = examRingSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (info_number > 15)
+            {
+                GetComponent<AudioSource>().Stop();
+            }
+            if (info_number == 22)
+            {
+                GetComponent<AudioSource>().clip = doorSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (info_number > 22)
+            {
+                GetComponent<AudioSource>().Stop();
+            }
+            if (info_number == 28)
+            {
+                GetComponent<AudioSource>().clip = messengerSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (info_number > 28)
+            {
+                GetComponent<AudioSource>().Stop();
+            }
+            if (info_number == 66)
+            {
+                GetComponent<AudioSource>().clip = minuteSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (info_number > 66)
+            {
+                GetComponent<AudioSource>().Stop();
+            }
+
 
             dialogueText.text = "";
             StartCoroutine(TypeText(info));
-        }
+        }//end of lock
 
+        switch (info_number)
+        {
+            case 4:
+            case 14:
+            case 19:
+            case 22:
+            case 29:
+            case 43:
+            case 57:
+            case 66:
+            case 73:
+            case 79:
+            case 85:
+                delayDialog();
+                break;
+            default: break;
+        }
+    }
+
+    //대사 2초 자동 뜸들이기 함수
+    private void delayDialog()
+    {
+        DialogueBox.SetActive(false);
+        Invoke("DequeueDialogue", 2f);
     }
 
     IEnumerator TypeText(DialogueBase.Info info)
@@ -228,11 +282,6 @@ public class DialogueManager : MonoBehaviour
         DialogueBox.SetActive(false); //화면에서 없앰
     }
 
-    //대사 2초 자동 뜸들이기 함수
-    private void delayDialog()
-    {
-        DialogueBox.SetActive(false);
-        Invoke("DequeueDialogue", 2f);
-    }
+    
     
 }
