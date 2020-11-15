@@ -16,7 +16,7 @@ public class LoadingAnimManager : MonoBehaviour
 
     public void Close()
     {
-        //StartCoroutine(CloseAfterDelay());
+       // StartCoroutine(CloseAfterDelay());
     }
 
     private IEnumerable CloseAfterDelay()

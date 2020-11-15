@@ -5,7 +5,7 @@ EditorSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
   m_SerializationMode: 2
-  m_LineEndingsForNewScripts: 0
+  m_LineEndingsForNewScripts: 2
   m_DefaultBehaviorMode: 1
   m_PrefabRegularEnvironment: {fileID: 102900000, guid: e608944078f46f84aa29f39785ffd2ba,
     type: 3}

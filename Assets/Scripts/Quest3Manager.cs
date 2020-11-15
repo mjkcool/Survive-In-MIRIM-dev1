@@ -12,7 +12,10 @@ public class Quest3Manager : MonoBehaviour
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
     public Image Portrait;
+    public Image SuccessPortrait;
     public Sprite portraitImage;
+    public Sprite successImage;
+    
     //Q1-1
     public TMP_InputField InputF_1;
     public GameObject Input_1;
@@ -43,7 +46,10 @@ public class Quest3Manager : MonoBehaviour
 
     public void EnqueueQuest(QuestBase db)
     {
+        Portrait.gameObject.SetActive(true);
+        SuccessPortrait.sprite = successImage;
         Portrait.sprite = portraitImage;
+        SuccessPortrait.gameObject.SetActive(false);
         //이미지 사이즈 지정(*변경없음*)
         QuestDialogBox.SetActive(true);
         QuestInfo.Clear();
@@ -123,6 +129,8 @@ public class Quest3Manager : MonoBehaviour
                         dialogueName.text = info.myName;
                         dialogueText.text = info.myText;
                         InputF_2.text = null;
+                        SuccessPortrait.gameObject.SetActive(true);
+                        Portrait.gameObject.SetActive(false);
                         Input_2.SetActive(false);
                     }
                     else //오답 입력시
@@ -137,7 +145,10 @@ public class Quest3Manager : MonoBehaviour
         }
         else if (QuestInfo.Count == 0) //Quest 다이얼로그 끝나면
         {
-            EndofQuest();
+            SuccessPortrait.gameObject.SetActive(false);
+            Portrait.gameObject.SetActive(false);
+            QuestManager.instance.spinStar();
+            Invoke("EndofQuest", 5f);
             return;
         }
         else

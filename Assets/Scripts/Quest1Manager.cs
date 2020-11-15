@@ -12,7 +12,9 @@ public class Quest1Manager : MonoBehaviour
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
     public Image Portrait;
+    public Image SuccessPortrait;
     public Sprite portraitImage;
+    public Sprite successImage;
     //Q1-1
     public TMP_InputField InputF_1;
     public GameObject Input_1;
@@ -44,7 +46,9 @@ public class Quest1Manager : MonoBehaviour
 
     public void EnqueueQuest(QuestBase db)
     {
+        SuccessPortrait.sprite = successImage;
         Portrait.sprite = portraitImage;
+        SuccessPortrait.gameObject.SetActive(false);
         //이미지 사이즈 지정
         RectTransform rt = (RectTransform)Portrait.transform;
         rt.sizeDelta = new Vector2(1048, 1400);
@@ -122,10 +126,12 @@ public class Quest1Manager : MonoBehaviour
                     if (isCorrect(InputF_2.text.ToString()))
                     {
                         //정답의경우
-
+                        Input_2.SetActive(false);
                         QuestBase.Info info = QuestInfo.Dequeue();
                         dialogueName.text = info.myName;
                         dialogueText.text = info.myText;
+                        SuccessPortrait.gameObject.SetActive(true);
+                        Portrait.gameObject.SetActive(false);
                         Input_2.SetActive(false);
                     }
                     else //오답 입력시
@@ -136,12 +142,15 @@ public class Quest1Manager : MonoBehaviour
                         flag = false;
                     }
                 }
+                
             }
         }
         else if (QuestInfo.Count == 0) //Quest 다이얼로그 끝나면
         {
-
-            EndofQuest();
+            SuccessPortrait.gameObject.SetActive(false);
+            Portrait.gameObject.SetActive(false);
+            QuestManager.instance.spinStar();
+            Invoke("EndofQuest", 5f);
             return;
         }
         else
@@ -206,7 +215,6 @@ public class Quest1Manager : MonoBehaviour
     private void EndofQuest()
     {
         InputF_2.text = null;
-        Destroy(transform.Find("othertexts"));
         QuestDialogBox.SetActive(false);//화면에서 없앰
         DialogueManager.instance.Q1completed = true;
         (DialogueManager.instance.DialogueBox).SetActive(true);
