@@ -16,13 +16,13 @@ public class StarAnimManager : MonoBehaviour
 
     public void Close()
     {
-       // StartCoroutine(CloseAfterDelay());
+        //StartCoroutine(CloseAfterDelay());
     }
 
     private IEnumerable CloseAfterDelay()
     {
         animator.SetTrigger("close");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.2f);
         gameObject.SetActive(false);
         animator.ResetTrigger("close");
     }

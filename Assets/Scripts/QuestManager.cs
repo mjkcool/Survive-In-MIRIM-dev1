@@ -31,31 +31,13 @@ public class QuestManager : MonoBehaviour
 
     //anim
     public GameObject QuestObj;
+    public GameObject starAnimation;
     public GameObject LoadingAnimation;
     public GameObject LoadingGround;
-    public GameObject SpinStarAnimation;
-    public GameObject ExplodeAnimation;
-    public GameObject StarGround;
     public GameObject success;
     public GameObject failure;
 
     private bool correct;
-
-     public void spinStar()
-    {
-        StarGround.SetActive(true);
-        SpinStarAnimation.SetActive(true);
-        ExplodeAnimation.SetActive(true);
-        Invoke("spinStar2", 5f);
-        Debug.Log("questSuccess");
-    }
-    private void spinStar2()
-    {
-        StarGround.SetActive(false); 
-        SpinStarAnimation.SetActive(false);
-        ExplodeAnimation.SetActive(false);
-    }
-
 
     public void startLoading(bool correct)
     {
@@ -79,6 +61,4 @@ public class QuestManager : MonoBehaviour
         LoadingGround.SetActive(false);
         QuestObj.SetActive(true);
     }
-
-
 }

@@ -9,13 +9,16 @@ public class DialogStarter : MonoBehaviour
 {
     public DialogueBase dialogue;
     public GameObject chapterIndex;
+<<<<<<< HEAD
     private Animator animator;
     private AudioSource audio;
+=======
+>>>>>>> parent of 30c95d0... It can be build well, all of functions and process work
 
-
-    private void Start()
+    private void Awake()
     {
         Debug.Log(Screen.width);
+<<<<<<< HEAD
         //아이디 값이 0, 즉 세이브가 없는 경우
         if (DialogueManager.instance.thisId == 0)
         {
@@ -54,6 +57,10 @@ public class DialogStarter : MonoBehaviour
             GetComponent<AudioSource>().Stop();
             DialogueManager.instance.LoadDialogue(dialogue);
         }
+=======
+        
+        Invoke("TriggerDialogue", 5f);
+>>>>>>> parent of 30c95d0... It can be build well, all of functions and process work
     }
 
     public void TriggerDialogue()

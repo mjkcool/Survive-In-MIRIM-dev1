@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public static string UserName = "User";
+    public static int LoadId = 0;
     public AudioClip doorSound;
     public AudioClip pencilSound;
     public AudioClip computerpenSound;
@@ -36,109 +37,108 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Image dialoguePortrait;
     public Image backgroundPortrait;
-    public float delay = 2f;
+    public float delay = 0.05f;
     public QuestStarter questStarter;
     public DialogueButton DialogBtn;
 
+    //private bool isDelay = false;
     public bool isCurrentlyTyping;
     private string completeText;
-    public int thisId;
 
     public Queue<DialogueBase.Info> dialogueInfo;
 
-    public bool Q1completed = false, Q2completed = false, Q3completed = false, Q4completed = false, Q5completed = false;
+    //오디오 
+    public int classSound_dialog;
+    public int classSoundEnd_dialog;
+    public int firstExampaper_dialog;
+    public int firstExampaperEnd_dialog;
+    public int schoolRing_dialog;
+    public int schoolRingEnd_dialog;
+    //
+
+    private int dialogtotalcnt;
+    public bool Q1completed = false, Q2completed = false, Q3completed = false, Q4completed = false, Q5completed=false;
+    private int passed_dialognum;
     private AudioSource audio; //사용할 오디오 소스 컴포넌트
 
     public void Start()
     {
         audio = GetComponent<AudioSource>();
+        dialogueInfo = new Queue<DialogueBase.Info>();  //다이얼로그 초기화
     }
 
 
     public void EnqueueDialogue(DialogueBase db)
     {
-        dialogueInfo = new Queue<DialogueBase.Info>();  //다이얼로그 초기화
         DialogueBox.SetActive(true); //화면에 띄움
         dialogueInfo.Clear();
 
+        
+        int i = 0;
         foreach (DialogueBase.Info info in db.dialogueInfo)
         {
+            info.id = i++;
             dialogueInfo.Enqueue(info);
         }
 
-        DequeueDialogue();
-    }
+        dialogtotalcnt = dialogueInfo.Count;
+        classSound_dialog = 1;
+        classSoundEnd_dialog = 5;
+        firstExampaper_dialog = 8;
+        firstExampaperEnd_dialog = 9;
+        schoolRing_dialog = 14;
+        schoolRingEnd_dialog = 15;
 
-    //세이브된 thisId데이터가 퀘스트부분일때
-    public void QuestDialogue(DialogueBase db)
-    {
-        dialogueInfo = new Queue<DialogueBase.Info>();
-        foreach (DialogueBase.Info info in db.dialogueInfo)
-        {
-            dialogueInfo.Enqueue(info);
-        }
-        for (int i = 0; i < thisId; i++)
-        {
-            dialogueInfo.Dequeue(); //thisId보다 작은 수의 thisId 삭제
-        }
-        DequeueDialogue();
-        DialogueBox.SetActive(false);
-    }
+        passed_dialognum = 13; //다음 퀘스트 시작 지점 지정
 
-    //세이브된 thisId데이터 로드
-    public void LoadDialogue(DialogueBase db)
-    {
-        dialogueInfo = new Queue<DialogueBase.Info>();
-        DialogueBox.SetActive(true); //화면에 띄움
-        foreach (DialogueBase.Info info in db.dialogueInfo)
-        {
-            dialogueInfo.Enqueue(info);
-        }
-        for (int i = 0; i < thisId; i++)
-        {
-            dialogueInfo.Dequeue(); //thisId보다 작은 수의 thisId 삭제
-        }
+        
         DequeueDialogue();
     }
 
     public void DequeueDialogue()
     {
+        DialogueBox.SetActive(true);
+        int info_number;
+
         lock (dialogueInfo)
         {
-
-            if (thisId > 115) //챕터 1 종료
+            if (dialogueInfo.Count == 0) //챕터 1 종료
             {
                 EndofDialogue();
             }
-            else if ((thisId == 12) && (!Q1completed)) //퀘스트 1 시작
+            else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q1completed)) //퀘스트 1 시작
             {
+                passed_dialognum += 24;
                 DialogueBox.SetActive(false);
                 DialogBtn.questnum = 1;
                 questStarter.questnum = 1;
                 questStarter.start();
             }
-            else if ((thisId == 36) && (!Q2completed)) //퀘스트 2 시작
+            else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q2completed)) //퀘스트 2 시작
             {
+                passed_dialognum += 25;
                 DialogueBox.SetActive(false);
                 DialogBtn.questnum = 2;
                 questStarter.questnum = 2;
                 questStarter.start();
             }
-            else if ((thisId == 61) && (!Q3completed))//퀘스트 3 시작
+            else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 3 시작
             {
+                passed_dialognum += 21;
                 DialogueBox.SetActive(false);
                 DialogBtn.questnum = 3;
                 questStarter.questnum = 3;
                 questStarter.start();
             }
-            else if ((thisId == 82) && (!Q3completed))//퀘스트 4 시작
+            else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 4 시작
             {
+                passed_dialognum += 26;
                 DialogueBox.SetActive(false);
                 DialogBtn.questnum = 4;
                 questStarter.questnum = 4;
                 questStarter.start();
             }
-            else if ((thisId == 108) && (!Q3completed))//퀘스트 5 시작
+            else if ((dialogueInfo.Count == (dialogtotalcnt - passed_dialognum)) && (!Q3completed))//퀘스트 5 시작
             {
                 DialogueBox.SetActive(false);
                 DialogBtn.questnum = 5;
@@ -154,66 +154,82 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
 
-            DialogueBox.SetActive(true);
-
+            
 
             DialogueBase.Info info = dialogueInfo.Dequeue();
             completeText = info.myText;
-            thisId = info.id;
 
             //유저 이름
-            if (info.myName.Equals("유저")) dialogueName.text = UserName;
+            if(info.myName.Equals("유저")) dialogueName.text = UserName;
             else dialogueName.text = info.myName;
 
             dialogueText.text = info.myText.Replace("유저", UserName);
             dialoguePortrait.sprite = info.portrait;
             backgroundPortrait.sprite = info.background;
 
-            ////////오디오 설정
-            if (thisId > 6) { GetComponent<AudioSource>().Stop(); }
+            info_number = info.id;
 
+            ////////오디오 설정
+            if (info_number == 0)
+            {
+                GetComponent<AudioSource>().clip = schoolRingSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (info_number > 7) { GetComponent<AudioSource>().Stop(); }
+
+<<<<<<< HEAD
             if (thisId == 14)
+=======
+            if (info_number == 7)
+            {
+                GetComponent<AudioSource>().clip = paperSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (info_number > 7) { GetComponent<AudioSource>().Stop(); }
+
+            if (info_number == 14)
+>>>>>>> parent of 30c95d0... It can be build well, all of functions and process work
             {
                 GetComponent<AudioSource>().clip = pencilSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (thisId > 14)
+            else if (info_number > 14)
             {
                 GetComponent<AudioSource>().Stop();
             }
-            if (thisId == 15)
+            if (info_number == 15)
             {
                 GetComponent<AudioSource>().clip = examRingSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (thisId > 15)
+            else if (info_number > 15)
             {
                 GetComponent<AudioSource>().Stop();
             }
-            if (thisId == 22)
+            if (info_number == 22)
             {
                 GetComponent<AudioSource>().clip = doorSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (thisId > 22)
+            else if (info_number > 22)
             {
                 GetComponent<AudioSource>().Stop();
             }
-            if (thisId == 28)
+            if (info_number == 28)
             {
                 GetComponent<AudioSource>().clip = messengerSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (thisId > 28)
+            else if (info_number > 28)
             {
                 GetComponent<AudioSource>().Stop();
             }
-            if (thisId == 66)
+            if (info_number == 66)
             {
                 GetComponent<AudioSource>().clip = examRingSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (thisId > 66)
+            else if (info_number > 66)
             {
                 GetComponent<AudioSource>().Stop();
             }
@@ -227,10 +243,35 @@ public class DialogueManager : MonoBehaviour
                 GetComponent<AudioSource>().Stop();
             }
 
+
             dialogueText.text = "";
             StartCoroutine(TypeText(info));
-        }
+        }//end of lock
 
+        switch (info_number)
+        {
+            case 4:
+            case 14:
+            case 19:
+            case 22:
+            case 29:
+            case 43:
+            case 57:
+            case 66:
+            case 73:
+            case 79:
+            case 85:
+                delayDialog();
+                break;
+            default: break;
+        }
+    }
+
+    //대사 2초 자동 뜸들이기 함수
+    private void delayDialog()
+    {
+        DialogueBox.SetActive(false);
+        Invoke("DequeueDialogue", 2f);
     }
 
     IEnumerator TypeText(DialogueBase.Info info)
@@ -254,10 +295,6 @@ public class DialogueManager : MonoBehaviour
         DialogueBox.SetActive(false); //화면에서 없앰
     }
 
-    //대사 2초 자동 뜸들이기 함수
-    private void delayDialog()
-    {
-        Invoke("DequeueDialogue", 2f);
-    }
-
+    
+    
 }
