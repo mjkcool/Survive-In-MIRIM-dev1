@@ -172,13 +172,6 @@ public class DialogueManager : MonoBehaviour
             ////////오디오 설정
             if (thisId > 6) { GetComponent<AudioSource>().Stop(); }
 
-            if (thisId == 7)
-            {
-                GetComponent<AudioSource>().clip = paperSound;
-                GetComponent<AudioSource>().Play();
-            }
-            else if (thisId > 7) { GetComponent<AudioSource>().Stop(); }
-
             if (thisId == 14)
             {
                 GetComponent<AudioSource>().clip = pencilSound;
@@ -217,10 +210,19 @@ public class DialogueManager : MonoBehaviour
             }
             if (thisId == 66)
             {
-                GetComponent<AudioSource>().clip = minuteSound;
+                GetComponent<AudioSource>().clip = examRingSound;
                 GetComponent<AudioSource>().Play();
             }
             else if (thisId > 66)
+            {
+                GetComponent<AudioSource>().Stop();
+            }
+            if (thisId == 84)
+            {
+                GetComponent<AudioSource>().clip = minuteSound;
+                GetComponent<AudioSource>().Play();
+            }
+            else if (thisId > 84)
             {
                 GetComponent<AudioSource>().Stop();
             }

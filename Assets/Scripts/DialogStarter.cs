@@ -10,6 +10,7 @@ public class DialogStarter : MonoBehaviour
     public DialogueBase dialogue;
     public GameObject chapterIndex;
     private Animator animator;
+    private AudioSource audio;
 
 
     private void Start()
@@ -19,34 +20,38 @@ public class DialogStarter : MonoBehaviour
         if (DialogueManager.instance.thisId == 0)
         {
             chapterIndex.SetActive(true);
-            //GetComponent<AudioSource>().clip = DialogueManager.instance.schoolRingSound;
-            //GetComponenst<AudioSource>().Play();
             Invoke("TriggerDialogue", 5f);
         }
         //퀘스트 중에 세이브했을 경우
         else if (DialogueManager.instance.thisId == 12)
         {
+            GetComponent<AudioSource>().Stop();
             DialogueManager.instance.QuestDialogue(dialogue);
         }
         else if (DialogueManager.instance.thisId == 36)
         {
+            GetComponent<AudioSource>().Stop();
             DialogueManager.instance.QuestDialogue(dialogue);
         }
         else if (DialogueManager.instance.thisId == 61)
         {
+            GetComponent<AudioSource>().Stop();
             DialogueManager.instance.QuestDialogue(dialogue);
         }
         else if (DialogueManager.instance.thisId == 82)
         {
+            GetComponent<AudioSource>().Stop();
             DialogueManager.instance.QuestDialogue(dialogue);
         }
         else if (DialogueManager.instance.thisId == 108)
         {
+            GetComponent<AudioSource>().Stop();
             DialogueManager.instance.QuestDialogue(dialogue);
         }
         //일반적인 다이얼로그에서 세이브했을경우
         else
         {
+            GetComponent<AudioSource>().Stop();
             DialogueManager.instance.LoadDialogue(dialogue);
         }
     }
