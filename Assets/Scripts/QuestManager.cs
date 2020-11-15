@@ -33,9 +33,9 @@ public class QuestManager : MonoBehaviour
     public GameObject QuestObj;
     public GameObject LoadingAnimation;
     public GameObject LoadingGround;
+    public GameObject StarGround;
     public GameObject SpinStarAnimation;
     public GameObject ExplodeAnimation;
-    public GameObject StarGround;
     public GameObject success;
     public GameObject failure;
 
@@ -46,7 +46,7 @@ public class QuestManager : MonoBehaviour
         StarGround.SetActive(true);
         SpinStarAnimation.SetActive(true);
         ExplodeAnimation.SetActive(true);
-        Invoke("spinStar2", 5f);
+        Invoke("spinStar2", 4.5f);
         Debug.Log("questSuccess");
     }
     private void spinStar2()

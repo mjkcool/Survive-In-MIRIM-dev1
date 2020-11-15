@@ -8,7 +8,7 @@ using TMPro;
 public class Quest2Manager : MonoBehaviour
 {
     //Dialog Objects
-   public GameObject QuestDialogBox;
+    public GameObject QuestDialogBox;
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
     public Image Portrait;

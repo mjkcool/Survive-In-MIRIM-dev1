@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEditor;
+// using UnityEditor;
 
-
+// [InitializeOnLoad]
 public class FadeInScript : MonoBehaviour
 {
     public Image FadeImage;

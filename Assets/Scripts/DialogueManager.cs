@@ -46,7 +46,7 @@ public class DialogueManager : MonoBehaviour
 
     public Queue<DialogueBase.Info> dialogueInfo;
 
-    public bool Q1completed = false, Q2completed = false, Q3completed = false, Q4completed = false, Q5completed = false;
+    public bool Q1completed = false, Q2completed = false, Q3completed = false, Q4completed = false, Q5completed=false;
     private AudioSource audio; //사용할 오디오 소스 컴포넌트
 
     public void Start()
@@ -65,7 +65,7 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueInfo.Enqueue(info);
         }
-
+        
         DequeueDialogue();
     }
 
@@ -77,7 +77,7 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueInfo.Enqueue(info);
         }
-        for (int i = 0; i < thisId; i++)
+        for(int i=0; i<thisId; i++)
         {
             dialogueInfo.Dequeue(); //thisId보다 작은 수의 thisId 삭제
         }
@@ -94,7 +94,7 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueInfo.Enqueue(info);
         }
-        for (int i = 0; i < thisId; i++)
+        for(int i=0; i<thisId; i++)
         {
             dialogueInfo.Dequeue(); //thisId보다 작은 수의 thisId 삭제
         }
@@ -105,40 +105,40 @@ public class DialogueManager : MonoBehaviour
     {
         lock (dialogueInfo)
         {
-
-            if (thisId > 115) //챕터 1 종료
+            
+            if (thisId>115) //챕터 1 종료
             {
                 EndofDialogue();
             }
-            else if ((thisId == 12) && (!Q1completed)) //퀘스트 1 시작
+            else if ((thisId==12) && (!Q1completed)) //퀘스트 1 시작
             {
                 DialogueBox.SetActive(false);
                 DialogBtn.questnum = 1;
                 questStarter.questnum = 1;
                 questStarter.start();
             }
-            else if ((thisId == 36) && (!Q2completed)) //퀘스트 2 시작
+            else if ((thisId==36) && (!Q2completed)) //퀘스트 2 시작
             {
                 DialogueBox.SetActive(false);
                 DialogBtn.questnum = 2;
                 questStarter.questnum = 2;
                 questStarter.start();
             }
-            else if ((thisId == 61) && (!Q3completed))//퀘스트 3 시작
+            else if ((thisId==61) && (!Q3completed))//퀘스트 3 시작
             {
                 DialogueBox.SetActive(false);
                 DialogBtn.questnum = 3;
                 questStarter.questnum = 3;
                 questStarter.start();
             }
-            else if ((thisId == 82) && (!Q3completed))//퀘스트 4 시작
+            else if ((thisId==82) && (!Q3completed))//퀘스트 4 시작
             {
                 DialogueBox.SetActive(false);
                 DialogBtn.questnum = 4;
                 questStarter.questnum = 4;
                 questStarter.start();
             }
-            else if ((thisId == 108) && (!Q3completed))//퀘스트 5 시작
+            else if ((thisId==108) && (!Q3completed))//퀘스트 5 시작
             {
                 DialogueBox.SetActive(false);
                 DialogBtn.questnum = 5;
@@ -156,13 +156,13 @@ public class DialogueManager : MonoBehaviour
 
             DialogueBox.SetActive(true);
 
-
+            
             DialogueBase.Info info = dialogueInfo.Dequeue();
             completeText = info.myText;
             thisId = info.id;
 
             //유저 이름
-            if (info.myName.Equals("유저")) dialogueName.text = UserName;
+            if(info.myName.Equals("유저")) dialogueName.text = UserName;
             else dialogueName.text = info.myName;
 
             dialogueText.text = info.myText.Replace("유저", UserName);
@@ -170,59 +170,63 @@ public class DialogueManager : MonoBehaviour
             backgroundPortrait.sprite = info.background;
 
             ////////오디오 설정
-            if (thisId > 6) { GetComponent<AudioSource>().Stop(); }
+            if (thisId==7)
+            {
+                GetComponent<AudioSource>().clip = paperSound;
+                GetComponent<AudioSource>().Play();
+            }else if (thisId>7){GetComponent<AudioSource>().Stop();}
 
-            if (thisId == 14)
+            if (thisId==14)
             {
                 GetComponent<AudioSource>().clip = pencilSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (thisId > 14)
+            else if (thisId>14)
             {
                 GetComponent<AudioSource>().Stop();
             }
-            if (thisId == 15)
+            if (thisId==15)
             {
                 GetComponent<AudioSource>().clip = examRingSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (thisId > 15)
+            else if (thisId>15)
             {
                 GetComponent<AudioSource>().Stop();
             }
-            if (thisId == 22)
+            if(thisId==22)
             {
-                GetComponent<AudioSource>().clip = doorSound;
+               GetComponent<AudioSource>().clip = doorSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (thisId > 22)
+            else if (thisId>22)
             {
                 GetComponent<AudioSource>().Stop();
             }
-            if (thisId == 28)
+            if (thisId==28)
             {
                 GetComponent<AudioSource>().clip = messengerSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (thisId > 28)
+             else if (thisId>28)
             {
                 GetComponent<AudioSource>().Stop();
             }
-            if (thisId == 66)
+            if (thisId==66)
             {
                 GetComponent<AudioSource>().clip = examRingSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (thisId > 66)
+             else if (thisId>66)
             {
                 GetComponent<AudioSource>().Stop();
             }
-            if (thisId == 84)
+            if (thisId==84)
             {
                 GetComponent<AudioSource>().clip = minuteSound;
                 GetComponent<AudioSource>().Play();
             }
-            else if (thisId > 84)
+             else if (thisId>84)
             {
                 GetComponent<AudioSource>().Stop();
             }
@@ -259,5 +263,5 @@ public class DialogueManager : MonoBehaviour
     {
         Invoke("DequeueDialogue", 2f);
     }
-
+    
 }
