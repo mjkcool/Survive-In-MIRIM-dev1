@@ -106,7 +106,7 @@ public class DialogueManager : MonoBehaviour
         lock (dialogueInfo)
         {
             
-            if (thisId>115) //챕터 1 종료
+            if (thisId>=116) //챕터 1 종료
             {
                 EndofDialogue();
             }
@@ -235,6 +235,24 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(TypeText(info));
         }
 
+        switch (thisId)
+        {
+            case 4:
+            case 14:
+            case 19:
+            case 22:
+            case 29:
+            case 43:
+            case 57:
+            case 66:
+            case 73:
+            case 79:
+            case 85:
+                delayDialog();
+                break;
+            default: break;
+        }
+
     }
 
     IEnumerator TypeText(DialogueBase.Info info)
@@ -261,6 +279,7 @@ public class DialogueManager : MonoBehaviour
     //대사 2초 자동 뜸들이기 함수
     private void delayDialog()
     {
+        DialogueBox.SetActive(false);
         Invoke("DequeueDialogue", 2f);
     }
     

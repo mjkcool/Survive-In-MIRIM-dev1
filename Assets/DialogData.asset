@@ -177,7 +177,7 @@ MonoBehaviour:
       \uD398\uC774\uC2A4\uBD81 \uBA54\uC2E0\uC800 \uBC29"
   - id: 29
     myName: "\uC720\uC800"
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 35a2145c4d8920341931903d89bd932f, type: 3}
     background: {fileID: 21300000, guid: b49f293589f002548bea9514d8316b35, type: 3}
     myText: "\uC810\uC218\uAC00 \uC65C \uC774\uB798?"
   - id: 30

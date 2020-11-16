@@ -9,7 +9,6 @@ public class Popup : MonoBehaviour
 { 
     public static Popup instance;
     private Animator animator;
-    public DialogueManager dialogueManager;
     private void Awake()
     {
         animator = GetComponent<Animator>();

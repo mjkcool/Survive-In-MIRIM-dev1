@@ -217,7 +217,7 @@ MonoBehaviour:
   Portrait: {fileID: 747945839}
   SuccessPortrait: {fileID: 1536592129}
   portraitImage: {fileID: 21300000, guid: 179cd81213411f247abd4be05a7eb75e, type: 3}
-  successImage: {fileID: 21300000, guid: 4078b85b577bb5844a1dca35013a21cb, type: 3}
+  successImage: {fileID: 21300000, guid: 44408d5444b329d42aa864bf1a76ab04, type: 3}
   InputF_1: {fileID: 1322868892}
   Input_1: {fileID: 1322868890}
   InputF_2: {fileID: 896354267}
@@ -1647,7 +1647,7 @@ MonoBehaviour:
   Portrait: {fileID: 747945839}
   SuccessPortrait: {fileID: 1536592129}
   portraitImage: {fileID: 21300000, guid: d42427cd0b5b5d64ca0e4d54fa565834, type: 3}
-  successImage: {fileID: 0}
+  successImage: {fileID: 21300000, guid: 35a2145c4d8920341931903d89bd932f, type: 3}
   InputF_1: {fileID: 1322868892}
   Input_1: {fileID: 1322868890}
   InputF_2: {fileID: 896354267}
@@ -3764,7 +3764,7 @@ MonoBehaviour:
   Portrait: {fileID: 747945839}
   SuccessPortrait: {fileID: 1536592129}
   portraitImage: {fileID: 21300000, guid: 54b4334097c6541429af43ab0117cf61, type: 3}
-  successImage: {fileID: 0}
+  successImage: {fileID: 21300000, guid: 04cf2eb7806687f4aadbdfaef7d1cb7f, type: 3}
   InputF_1: {fileID: 1322868892}
   Input_1: {fileID: 1322868890}
   InputF_2: {fileID: 896354267}
@@ -4222,7 +4222,7 @@ MonoBehaviour:
   Portrait: {fileID: 747945839}
   SuccessPortrait: {fileID: 1536592129}
   portraitImage: {fileID: 21300000, guid: 8b3439ee2fb8f2a4cbd5a5b382d7c657, type: 3}
-  successImage: {fileID: 0}
+  successImage: {fileID: 21300000, guid: 35a2145c4d8920341931903d89bd932f, type: 3}
   InputF_1: {fileID: 1322868892}
   Input_1: {fileID: 1322868890}
   InputF_2: {fileID: 896354267}
@@ -4276,7 +4276,7 @@ MonoBehaviour:
   Portrait: {fileID: 747945839}
   SuccessPortrait: {fileID: 1536592129}
   portraitImage: {fileID: 21300000, guid: 54b4334097c6541429af43ab0117cf61, type: 3}
-  successImage: {fileID: 0}
+  successImage: {fileID: 21300000, guid: 35a2145c4d8920341931903d89bd932f, type: 3}
   InputF_1: {fileID: 1322868892}
   Input_1: {fileID: 1322868890}
   InputF_2: {fileID: 896354267}
