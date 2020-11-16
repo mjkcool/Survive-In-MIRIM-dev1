@@ -148,18 +148,18 @@ public class Quest3Manager : MonoBehaviour
             SuccessPortrait.gameObject.SetActive(false);
             Portrait.gameObject.SetActive(false);
             QuestManager.instance.spinStar();
-            Invoke("EndofQuest", 5f);
+            Invoke("EndofQuest", 4.5f);
             return;
         }
         else
         {
             QuestBase.Info info = QuestInfo.Dequeue();
-            if (QuestInfo.Count == dialogtotalcnt - 3) //input 1 최초 로드
+            if (QuestInfo.Count == dialogtotalcnt - 5) //input 1 최초 로드
             {
                 Input_1.SetActive(true);
                 Qinfo_1 = info;
             }
-            else if (QuestInfo.Count == dialogtotalcnt - 5) //input 2 최초 로드 
+            else if (QuestInfo.Count == dialogtotalcnt - 7) //input 2 최초 로드 
             {
                 Input_2.SetActive(true);
                 Qinfo_2 = info;
@@ -169,7 +169,7 @@ public class Quest3Manager : MonoBehaviour
         }
     }
 
-    private string Qinfo_2_CorrectA = "when.equals ( \"setink\" )";
+    private string Qinfo_2_CorrectA = "if ( set_ink.equals( \"setink\" ) ) {";
 
     private bool isCorrect(string answer)
     {
@@ -179,7 +179,7 @@ public class Quest3Manager : MonoBehaviour
         string[] raw_list = Qinfo_2_CorrectA.Split('\x020');
         
         //필수 단어들이 들어가 있는지
-        if (answer.IndexOf(raw_list[0]) == -1 || answer.IndexOf(raw_list[2]) == -1)
+        if (answer.IndexOf(raw_list[0]) == -1 || answer.IndexOf(raw_list[2]) == -1 || answer.IndexOf(raw_list[3]) == -1)
         {
             return false;
         }

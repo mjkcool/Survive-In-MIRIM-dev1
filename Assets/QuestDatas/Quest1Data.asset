@@ -25,7 +25,7 @@ MonoBehaviour:
   - myName: "\xB7\u2022\uB514\uBC84\uAE45 \uC911\u2022\xB7"
     myText: "\uADF8\uB807\uB2E4\uBA74 \uC774 \uCF54\uB4DC \uD55C\uC904\uC744 \uACE0\uCCD0\uBCFC\uAE4C? "
   - myName: "\xB7\u2022\uB514\uBC84\uAE45 \uC911\u2022\xB7"
-    myText: "\uC774\uC57C!"
+    myText: 
   - myName: "\uB514\uBC84\uAE45 \uC131\uACF5"
     myText: 
   - myName: "\uB514\uBC84\uAE45 \uC131\uACF5"

@@ -149,18 +149,18 @@ public class Quest5Manager : MonoBehaviour
             SuccessPortrait.gameObject.SetActive(false);
             Portrait.gameObject.SetActive(false);
             QuestManager.instance.spinStar();
-            Invoke("EndofQuest", 5f);
+            Invoke("EndofQuest", 4.5f);
             return;
         }
         else
         {
             QuestBase.Info info = QuestInfo.Dequeue();
-            if (QuestInfo.Count == dialogtotalcnt - 3) //input 1 최초 로드
+            if (QuestInfo.Count == dialogtotalcnt - 5) //input 1 최초 로드
             {
                 Input_1.SetActive(true);
                 Qinfo_1 = info;
             }
-            else if (QuestInfo.Count == dialogtotalcnt - 5) //input 2 최초 로드 
+            else if (QuestInfo.Count == dialogtotalcnt - 7) //input 2 최초 로드 
             {
                 Input_2.SetActive(true);
                 Qinfo_2 = info;

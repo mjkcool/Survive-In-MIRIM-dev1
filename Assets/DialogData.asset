@@ -104,7 +104,7 @@ MonoBehaviour:
     myName: 
     portrait: {fileID: 21300000, guid: 35a2145c4d8920341931903d89bd932f, type: 3}
     background: {fileID: 21300000, guid: 6c3bd4d518e602e4c8d3f21d7d275650, type: 3}
-    myText: 
+    myText: "1\uAD50\uC2DC\uAC00 \uB05D\uB0AC\uB2E4"
   - id: 16
     myName: "\uBC15\uD5A5\uAE30 \uC120\uC0DD\uB2D8"
     portrait: {fileID: 21300000, guid: 9ccdd27805a617e43879c9a0da7351b9, type: 3}
@@ -323,7 +323,7 @@ MonoBehaviour:
       \uC774\uAC70 \uC368\uC694\r"
   - id: 54
     myName: 
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 35a2145c4d8920341931903d89bd932f, type: 3}
     background: {fileID: 21300000, guid: da6d054fec600c24d9443d64028cf76c, type: 3}
     myText: "\uC120\uC0DD\uB2D8\uAED8\uC11C \uCEF4\uC2F8\uB97C \uAC74\uB124\uC8FC\uC168\uB2E4"
   - id: 55

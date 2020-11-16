@@ -46,7 +46,7 @@ public class QuestManager : MonoBehaviour
         StarGround.SetActive(true);
         SpinStarAnimation.SetActive(true);
         ExplodeAnimation.SetActive(true);
-        Invoke("spinStar2", 4f);
+        Invoke("spinStar2", 4.3f);
         Debug.Log("questSuccess");
     }
     private void spinStar2()

@@ -103,10 +103,12 @@ public class DialogueManager : MonoBehaviour
 
     public void DequeueDialogue()
     {
+        DialogueBox.SetActive(true);
+
         lock (dialogueInfo)
         {
-            
-            if (thisId>=116) //챕터 1 종료
+
+            if (dialogueInfo.Count == 0) //챕터 1 종료
             {
                 EndofDialogue();
             }
@@ -154,7 +156,6 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
 
-            DialogueBox.SetActive(true);
 
             
             DialogueBase.Info info = dialogueInfo.Dequeue();

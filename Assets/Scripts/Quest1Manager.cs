@@ -150,7 +150,7 @@ public class Quest1Manager : MonoBehaviour
             SuccessPortrait.gameObject.SetActive(false);
             Portrait.gameObject.SetActive(false);
             QuestManager.instance.spinStar();
-            Invoke("EndofQuest", 5f);
+            Invoke("EndofQuest", 4.5f);
             return;
         }
         else
